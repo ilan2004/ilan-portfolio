@@ -110,7 +110,9 @@
   display: flex;
   gap: 2em;
 }
-
+.primary{
+  
+}
 .service-list-col:nth-child(1) {
   flex: 2;
 }

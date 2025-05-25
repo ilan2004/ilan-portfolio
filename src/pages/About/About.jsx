@@ -20,7 +20,7 @@ const About = () => {
 
         <section className="about-hero">
           <div className="about-hero-img">
-            <img src="/about/about-hero.jpg" alt="" />
+            <img src="/about/win.JPG" alt="" />
           </div>
         </section>
 
@@ -43,9 +43,8 @@ const About = () => {
         <section className="services">
           <div className="services-col">
             <div className="services-banner">
-              <img src="/about/services-banner.jpg" alt="" />
+              <img src="/about/cool.JPG" alt="" />
             </div>
-            <p className="primary">Created with Purpose</p>
           </div>
           <div className="services-col">
             <h4>
@@ -96,7 +95,7 @@ const About = () => {
 
         <section className="about-banner-img">
           <div className="about-banner-img-wrapper">
-            <img src="/about/about-banner.jpg" alt="" />
+            <img src="/about/stand.JPG" alt="" />
           </div>
         </section>
 
@@ -124,21 +123,21 @@ const About = () => {
                 <div className="fav-tool-img">
                   <img src="/about/next.png" alt="" />
                 </div>
-                <h4>Next.js</h4>
+
                 <p className="primary sm">Web Development</p>
               </div>
               <div className="fav-tool">
                 <div className="fav-tool-img">
                   <img src="/about/node.png" alt="" />
                 </div>
-                <h4>Node.js</h4>
+
                 <p className="primary sm">Backend Logic</p>
               </div>
               <div className="fav-tool">
                 <div className="fav-tool-img">
                   <img src="/about/firebase.png" alt="" />
                 </div>
-                <h4>Firebase</h4>
+
                 <p className="primary sm">Database</p>
               </div>
             </div>
@@ -147,21 +146,21 @@ const About = () => {
                 <div className="fav-tool-img">
                   <img src="/about/after.png" alt="" />
                 </div>
-                <h4>After Effects</h4>
+
                 <p className="primary sm">Video Editing</p>
               </div>
               <div className="fav-tool">
                 <div className="fav-tool-img">
                   <img src="/about/python.png" alt="" />
                 </div>
-                <h4>Python</h4>
+
                 <p className="primary sm">Daily Coding</p>
               </div>
               <div className="fav-tool">
                 <div className="fav-tool-img">
                   <img src="/about/git.png" alt="" />
                 </div>
-                <h4>Github</h4>
+
                 <p className="primary sm">Visual Capture</p>
               </div>
             </div>
