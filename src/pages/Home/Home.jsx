@@ -15,6 +15,7 @@ import ReactLenis from "lenis/react";
 gsap.registerPlugin(ScrollTrigger);
 
 import Transition from "../../components/Transition/Transition";
+import CloudinaryImage from "../../components/CloudinaryImage/index";
 
 const Home = () => {
   const workItems = Array.isArray(workList) ? workList : [];
@@ -197,7 +198,13 @@ const Home = () => {
                 )} - ${String(workItems.length).padStart(2, "0")}`}</p>
                 <h3>{work.title}</h3>
                 <div className="work-item-img">
-                  <img src={work.image} alt={work.title} />
+                  <CloudinaryImage 
+                    publicId={work.image} 
+                    alt={work.title} 
+                    width="600"
+                    height="400"
+                    crop="fill"
+                  />
                 </div>
                 <h4>{work.category}</h4>
               </Link>
