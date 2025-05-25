@@ -51,7 +51,7 @@ const Work = () => {
           const newTitleEl = document.createElement("h1");
           newTitleEl.textContent = newProject.title;
 
-          titleContainer.onclick = () => navigate("/sample-project");
+          titleContainer.onclick = () => navigate("/work");
 
           titleContainer.appendChild(newTitleEl);
 
@@ -116,7 +116,7 @@ const Work = () => {
         const newTitle = initialTitle.cloneNode(true);
         titleContainer.appendChild(newTitle);
 
-        titleContainer.onclick = () => navigate("/sample-project");
+        titleContainer.onclick = () => navigate("/work");
 
         initialTitleLink.parentNode.replaceChild(
           titleContainer,
@@ -164,7 +164,7 @@ const Work = () => {
             <p className="primary sm">{activeProject.description}</p>
           </div>
           <div className="carousel-title" ref={carouselTitleRef}>
-            <Link to="/sample-project">
+            <Link to="/work">
               <h1>{activeProject.title}</h1>
             </Link>
           </div>

@@ -187,7 +187,7 @@ const Home = () => {
           <div className="home-work-list">
             {workItems.map((work, index) => (
               <Link
-                to="/sample-project"
+                to="/"
                 key={work.id}
                 className="home-work-item"
               >

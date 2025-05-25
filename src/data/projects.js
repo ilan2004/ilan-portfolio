@@ -8,25 +8,25 @@ const projects = [
   {
     id: 2,
     title: "GRMS AUTOMATOR",
-    description: "Street life, raw and real",
+    description: "Browser Automation Ai agent",
     image: "/work/grms.png",
   },
   {
     id: 3,
     title: "DION POWER",
-    description: "Visual ode to silence",
+    description: "Full Stack Website",
     image: "/work/dion.png",
   },
   {
     id: 4,
     title: "Fuzzy",
-    description: "Urban color in motion",
+    description: "Short Film",
     image: "/work/fuzzy.png",
   },
   {
     id: 5,
     title: "Into the Mist",
-    description: "Grief told through memory",
+    description: "Travel Video",
     image: "/work/mist.png",
   },
 ];
