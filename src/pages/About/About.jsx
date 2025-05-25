@@ -4,6 +4,7 @@ import "./About.css";
 import AnimatedCopy from "../../components/AnimatedCopy/AnimatedCopy";
 import ContactForm from "../../components/ContactForm/ContactForm";
 import Footer from "../../components/Footer/Footer";
+import CloudinaryImage from "../../components/CloudinaryImage";
 
 import ReactLenis from "lenis/react";
 
@@ -20,14 +21,19 @@ const About = () => {
 
         <section className="about-hero">
           <div className="about-hero-img">
-            <img src="/about/win.JPG" alt="" />
+            <CloudinaryImage 
+              publicId="win_jcrs6g" 
+              alt="About hero image" 
+              width={1920}
+              loading="eager"
+            />
           </div>
         </section>
 
         <section className="about-me-copy">
           <div className="about-me-copy-wrapper">
             <AnimatedCopy animateOnScroll={true} tag="h3">
-              I'm Ilan — a builder, storyteller, and technologist from Kerala (india). I'm driven by the need to create meaningful things through technology, and to make the most of this one life I’ve been given.
+              I'm Ilan — a builder, storyteller, and technologist from Kerala (india). I'm driven by the need to create meaningful things through technology, and to make the most of this one life I've been given.
             </AnimatedCopy>
 
             <AnimatedCopy animateOnScroll={true} tag="h3">
@@ -35,7 +41,7 @@ const About = () => {
             </AnimatedCopy>
 
             <AnimatedCopy animateOnScroll={true} tag="h3">
-              My work is grounded in purpose. I believe in honest expression, bold experimentation, and building things that have real-world impact. At my core, I’m here to build — and building through tech is my way of giving back.
+              My work is grounded in purpose. I believe in honest expression, bold experimentation, and building things that have real-world impact. At my core, I'm here to build — and building through tech is my way of giving back.
             </AnimatedCopy>
           </div>
         </section>
@@ -43,7 +49,11 @@ const About = () => {
         <section className="services">
           <div className="services-col">
             <div className="services-banner">
-              <img src="/about/cool.JPG" alt="" />
+              <CloudinaryImage 
+                publicId="cool_c10obi" 
+                alt="Services banner image" 
+                width={800}
+              />
             </div>
           </div>
           <div className="services-col">
@@ -95,7 +105,11 @@ const About = () => {
 
         <section className="about-banner-img">
           <div className="about-banner-img-wrapper">
-            <img src="/about/stand.JPG" alt="" />
+            <CloudinaryImage 
+              publicId="stand_bl1yvj" 
+              alt="About banner image" 
+              width={1600}
+            />
           </div>
         </section>
 
@@ -121,21 +135,33 @@ const About = () => {
             <div className="fav-tools-list-row">
               <div className="fav-tool">
                 <div className="fav-tool-img">
-                  <img src="/about/next.png" alt="" />
+                  <CloudinaryImage 
+                    publicId="next_iowilf" 
+                    alt="Next.js logo" 
+                    width={400}
+                  />
                 </div>
 
                 <p className="primary sm">Web Development</p>
               </div>
               <div className="fav-tool">
                 <div className="fav-tool-img">
-                  <img src="/about/node.png" alt="" />
+                  <CloudinaryImage 
+                    publicId="node_ulyy44" 
+                    alt="Node.js logo" 
+                    width={400}
+                  />
                 </div>
 
                 <p className="primary sm">Backend Logic</p>
               </div>
               <div className="fav-tool">
                 <div className="fav-tool-img">
-                  <img src="/about/firebase.png" alt="" />
+                  <CloudinaryImage 
+                    publicId="firebase_xq90w6" 
+                    alt="Firebase logo" 
+                    width={400}
+                  />
                 </div>
 
                 <p className="primary sm">Database</p>
@@ -144,24 +170,36 @@ const About = () => {
             <div className="fav-tools-list-row">
               <div className="fav-tool">
                 <div className="fav-tool-img">
-                  <img src="/about/after.png" alt="" />
+                  <CloudinaryImage 
+                    publicId="after_bnry9h" 
+                    alt="After Effects logo" 
+                    width={400}
+                  />
                 </div>
 
                 <p className="primary sm">Video Editing</p>
               </div>
               <div className="fav-tool">
                 <div className="fav-tool-img">
-                  <img src="/about/python.png" alt="" />
+                  <CloudinaryImage 
+                    publicId="python_xmklub" 
+                    alt="Python logo" 
+                    width={400}
+                  />
                 </div>
 
-                <p className="primary sm">Daily Coding</p>
+                <p className="primary sm">Programming Language</p>
               </div>
               <div className="fav-tool">
                 <div className="fav-tool-img">
-                  <img src="/about/git.png" alt="" />
+                  <CloudinaryImage 
+                    publicId="git_lzegge" 
+                    alt="Git logo" 
+                    width={400}
+                  />
                 </div>
 
-                <p className="primary sm">Visual Capture</p>
+                <p className="primary sm">Version Control</p>
               </div>
             </div>
           </div>
