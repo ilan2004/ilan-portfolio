@@ -205,7 +205,7 @@ const Home = () => {
           </div>
         </section>
 
-        <Reviews />
+        {/* <Reviews /> */}
 
         <section className="hobbies">
           <div className="hobby">
