@@ -10,7 +10,6 @@ const Menu = () => {
     { path: "/work", label: "Work" },
     { path: "/about", label: "About" },
     { path: "/contact", label: "Contact" },
-    { path: "/faq", label: "FAQ" },
   ];
 
   const location = useLocation();

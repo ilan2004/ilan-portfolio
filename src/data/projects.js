@@ -1,33 +1,33 @@
 const projects = [
   {
     id: 1,
-    title: "Fragments of Light",
-    description: "Short film on self-discovery",
-    image: "/work/work-1.jpg",
+    title: "Star Shape",
+    description: "Digital Agency",
+    image: "/work/starshape.png",
   },
   {
     id: 2,
-    title: "Market Pulse",
+    title: "GRMS AUTOMATOR",
     description: "Street life, raw and real",
-    image: "/work/work-2.jpg",
+    image: "/work/grms.png",
   },
   {
     id: 3,
-    title: "The Stillness Project",
+    title: "DION POWER",
     description: "Visual ode to silence",
-    image: "/work/work-3.jpg",
+    image: "/work/dion.png",
   },
   {
     id: 4,
-    title: "Chroma/City",
+    title: "Fuzzy",
     description: "Urban color in motion",
-    image: "/work/work-4.jpg",
+    image: "/work/fuzzy.png",
   },
   {
     id: 5,
-    title: "Echoes of Silence",
+    title: "Into the Mist",
     description: "Grief told through memory",
-    image: "/work/work-5.jpg",
+    image: "/work/mist.png",
   },
 ];
 

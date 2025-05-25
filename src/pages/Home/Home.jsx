@@ -138,13 +138,9 @@ const Home = () => {
       <div className="page home">
         <section className="hero">
           <div className="hero-img">
-            <video 
-              src="/home/hero.MP4" 
-              alt="" 
-              autoPlay 
-              muted 
-              loop 
-              playsInline
+            <img 
+              src="/home/home.png" 
+              alt="Ilan Usman hero image" 
             />
           </div>
 

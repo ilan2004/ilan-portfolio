@@ -15,7 +15,7 @@ const About = () => {
       <div className="page about">
         <section className="about-header">
           <h1>Est</h1>
-          <h1>1997</h1>
+          <h1>2004</h1>
         </section>
 
         <section className="about-hero">
@@ -27,21 +27,15 @@ const About = () => {
         <section className="about-me-copy">
           <div className="about-me-copy-wrapper">
             <AnimatedCopy animateOnScroll={true} tag="h3">
-              I'm Nico Palmer — a filmmaker drawn to human stories, quiet
-              moments, and the visual language of emotion. My work spans short
-              films, experimental pieces, and cinematic visuals.
+              I'm Ilan — a builder, storyteller, and technologist from Kerala (india). I'm driven by the need to create meaningful things through technology, and to make the most of this one life I’ve been given.
             </AnimatedCopy>
 
             <AnimatedCopy animateOnScroll={true} tag="h3">
-              For me, filmmaking isn’t just about images — it’s about what those
-              images make us feel. I believe in subtlety, texture, and honesty
-              in storytelling.
+              I see stories everywhere. Whether it's code, a frame of video, or a quiet moment — I love capturing what matters. I shoot wherever I go, because documenting life is part of how I live it.
             </AnimatedCopy>
 
             <AnimatedCopy animateOnScroll={true} tag="h3">
-              Every project is a new collaboration, a new challenge, and a new
-              chance to create something meaningful. If it moves someone, even
-              for a second — it's done its job.
+              My work is grounded in purpose. I believe in honest expression, bold experimentation, and building things that have real-world impact. At my core, I’m here to build — and building through tech is my way of giving back.
             </AnimatedCopy>
           </div>
         </section>
@@ -51,26 +45,21 @@ const About = () => {
             <div className="services-banner">
               <img src="/about/services-banner.jpg" alt="" />
             </div>
-            <p className="primary">Crafted with Intention</p>
+            <p className="primary">Created with Purpose</p>
           </div>
           <div className="services-col">
             <h4>
-              Every project is a chance to explore new visual language, push
-              creative boundaries, and tell stories that feel real. I approach
-              each film with care, precision, and purpose.
+              Every project is a chance to learn, to explore, and to leave something valuable behind. I bring intention, clarity, and care to every step of the process — from idea to execution.
             </h4>
 
             <div className="services-list">
               <div className="service-list-row">
                 <div className="service-list-col">
-                  <h5>Filmmaking</h5>
+                  <h5>Software Development</h5>
                 </div>
                 <div className="service-list-col">
                   <p>
-                    From short films to personal narratives, my work is driven
-                    by emotion and atmosphere. I handle direction,
-                    cinematography, and editing — crafting each piece with a
-                    filmmaker’s eye for mood, movement, and meaning.
+                    I build full-stack applications using modern frameworks like Next.js and Node.js. I love creating tools, products, and systems that solve problems and scale beautifully.
                   </p>
                 </div>
               </div>
@@ -81,25 +70,24 @@ const About = () => {
                 </div>
                 <div className="service-list-col">
                   <p>
-                    I create visuals that speak — whether it’s a quiet moment or
-                    a bold idea. My work blends aesthetic choices with story
-                    clarity, making sure the emotional core always comes
-                    through.
+                    From short videos to cinematic edits, I capture moments that matter. I treat every frame like a sentence in a story — it should say something, feel something, and be worth watching.
                   </p>
                 </div>
               </div>
 
               <div className="service-list-row">
                 <div className="service-list-col">
-                  <h5>Creative Direction</h5>
+                  <h5>Tech Direction</h5>
                 </div>
                 <div className="service-list-col">
-                  <p>
-                    From ideation to final cut, I guide the visual and narrative
-                    tone of every project. I bring a cohesive, cinematic vision
-                    that aligns story, style, and intention — grounded in
-                    authenticity.
-                  </p>
+                <p>
+  I build to feel, and to make others feel.  
+  Some things I make for myself —  
+  others, for the ones it's meant to reach.  
+  Their reactions stay with me.  
+  Building is how I make sense of the world —  
+  through stories, through code, through light.
+</p>
                 </div>
               </div>
             </div>
@@ -115,10 +103,10 @@ const About = () => {
         <section className="fav-tools">
           <div className="fav-tools-header">
             <AnimatedCopy tag="p" animateOnScroll={true} className="primary sm">
-              Daily Stack
+              My Stack
             </AnimatedCopy>
             <AnimatedCopy tag="h2" animateOnScroll={true} delay={0.25}>
-              Favourite Tools
+              Skills
             </AnimatedCopy>
             <AnimatedCopy
               tag="p"
@@ -126,8 +114,7 @@ const About = () => {
               className="secondary"
               delay={0.5}
             >
-              My favorite stack includes Framer, Figma, and other cutting-edge
-              technologies to ensure seamless and dynamic designs.
+              I work across code, design, and visual media — building experiences that are efficient, elegant, and expressive.
             </AnimatedCopy>
           </div>
 
@@ -137,22 +124,22 @@ const About = () => {
                 <div className="fav-tool-img">
                   <img src="/about/tool-1.jpg" alt="" />
                 </div>
-                <h4>DaVinci Resolve</h4>
-                <p className="primary sm">Color Grading</p>
+                <h4>Next.js</h4>
+                <p className="primary sm">Web Development</p>
               </div>
               <div className="fav-tool">
                 <div className="fav-tool-img">
                   <img src="/about/tool-2.jpg" alt="" />
                 </div>
-                <h4>Adobe Premiere Pro</h4>
-                <p className="primary sm">Video Editing</p>
+                <h4>Node.js</h4>
+                <p className="primary sm">Backend Logic</p>
               </div>
               <div className="fav-tool">
                 <div className="fav-tool-img">
                   <img src="/about/tool-3.jpg" alt="" />
                 </div>
-                <h4>Blackmagic Pocket</h4>
-                <p className="primary sm">Cinematic Shooting</p>
+                <h4>Figma</h4>
+                <p className="primary sm">Product Design</p>
               </div>
             </div>
             <div className="fav-tools-list-row">
@@ -160,22 +147,22 @@ const About = () => {
                 <div className="fav-tool-img">
                   <img src="/about/tool-4.jpg" alt="" />
                 </div>
-                <h4>ShotDeck</h4>
-                <p className="primary sm">Visual References</p>
+                <h4>Adobe Premiere Pro</h4>
+                <p className="primary sm">Video Editing</p>
               </div>
               <div className="fav-tool">
                 <div className="fav-tool-img">
                   <img src="/about/tool-5.jpg" alt="" />
                 </div>
-                <h4>Frame.io</h4>
-                <p className="primary sm">Remote Collaboration</p>
+                <h4>VS Code</h4>
+                <p className="primary sm">Daily Coding</p>
               </div>
               <div className="fav-tool">
                 <div className="fav-tool-img">
                   <img src="/about/tool-6.jpg" alt="" />
                 </div>
-                <h4>Celtx</h4>
-                <p className="primary sm">Scriptwriting Tool</p>
+                <h4>Insta360 / GoPro</h4>
+                <p className="primary sm">Visual Capture</p>
               </div>
             </div>
           </div>
