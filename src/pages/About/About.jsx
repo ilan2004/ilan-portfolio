@@ -122,46 +122,46 @@ const About = () => {
             <div className="fav-tools-list-row">
               <div className="fav-tool">
                 <div className="fav-tool-img">
-                  <img src="/about/tool-1.jpg" alt="" />
+                  <img src="/about/next.png" alt="" />
                 </div>
                 <h4>Next.js</h4>
                 <p className="primary sm">Web Development</p>
               </div>
               <div className="fav-tool">
                 <div className="fav-tool-img">
-                  <img src="/about/tool-2.jpg" alt="" />
+                  <img src="/about/node.png" alt="" />
                 </div>
                 <h4>Node.js</h4>
                 <p className="primary sm">Backend Logic</p>
               </div>
               <div className="fav-tool">
                 <div className="fav-tool-img">
-                  <img src="/about/tool-3.jpg" alt="" />
+                  <img src="/about/firebase.png" alt="" />
                 </div>
-                <h4>Figma</h4>
-                <p className="primary sm">Product Design</p>
+                <h4>Firebase</h4>
+                <p className="primary sm">Database</p>
               </div>
             </div>
             <div className="fav-tools-list-row">
               <div className="fav-tool">
                 <div className="fav-tool-img">
-                  <img src="/about/tool-4.jpg" alt="" />
+                  <img src="/about/after.png" alt="" />
                 </div>
-                <h4>Adobe Premiere Pro</h4>
+                <h4>After Effects</h4>
                 <p className="primary sm">Video Editing</p>
               </div>
               <div className="fav-tool">
                 <div className="fav-tool-img">
-                  <img src="/about/tool-5.jpg" alt="" />
+                  <img src="/about/python.png" alt="" />
                 </div>
-                <h4>VS Code</h4>
+                <h4>Python</h4>
                 <p className="primary sm">Daily Coding</p>
               </div>
               <div className="fav-tool">
                 <div className="fav-tool-img">
-                  <img src="/about/tool-6.jpg" alt="" />
+                  <img src="/about/git.png" alt="" />
                 </div>
-                <h4>Insta360 / GoPro</h4>
+                <h4>Github</h4>
                 <p className="primary sm">Visual Capture</p>
               </div>
             </div>

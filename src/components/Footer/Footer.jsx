@@ -10,13 +10,15 @@ const Footer = () => {
         <div className="footer-contact">
           <h3>
             Let’s Collaborate <br />
-            film<span>@</span>ilan.usman.pro@gmail.com
+            ilan.usman.pro@gmail.com
           </h3>
 
           <p className="secondary">
-            From short films to full productions — I’m always open to creative
-            collaborations. Feel free to reach out anytime.
-          </p>
+  Whether it's a story to tell or a product to build —  
+  I'm always open to meaningful collaborations.  
+  Feel free to reach out anytime.
+</p>
+
 
           <Link to="/contact" className="btn">
             Get in Touch
@@ -41,11 +43,6 @@ const Footer = () => {
 
           <Link to="/contact" className="footer-nav-item">
             <span>Contact</span>
-            <span>&#8594;</span>
-          </Link>
-
-          <Link to="/faq" className="footer-nav-item">
-            <span>FAQ</span>
             <span>&#8594;</span>
           </Link>
         </div>

@@ -137,19 +137,17 @@ const Home = () => {
     <ReactLenis root>
       <div className="page home">
         <section className="hero">
-          <div className="hero-img">
-            <img 
-              src="/home/home.png" 
-              alt="Ilan Usman hero image" 
-            />
-          </div>
-
           <div className="hero-header">
             <AnimatedCopy tag="h1" animateOnScroll={false} delay={0.7}>
               Ilan
             </AnimatedCopy>
             <AnimatedCopy tag="h1" animateOnScroll={false} delay={0.8}>
               Usman
+            </AnimatedCopy>
+          </div>
+          <div className="hero-tagline">
+            <AnimatedCopy tag="p" animateOnScroll={false} delay={1.0} className="primary">
+              Developer • Storyteller • tinkerer
             </AnimatedCopy>
           </div>
         </section>

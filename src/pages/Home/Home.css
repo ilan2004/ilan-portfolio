@@ -4,37 +4,50 @@
   height: 100svh;
   overflow: hidden;
   display: flex;
-  align-items: flex-end;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   padding: 2em;
-}
-
-.hero-img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-/* Add these styles for the video element */
-.hero-img video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
+  background: linear-gradient(135deg, var(--fg) 0%, #2d2d2d 100%);
 }
 
 .hero-header {
   position: relative;
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  flex-direction: row; /* Keep names in a row for desktop */
+  align-items: center; /* Center align the names */
+  justify-content: center;
   z-index: 1;
 }
 
 .hero-header h1 {
   color: var(--bg);
   line-height: 1;
+  text-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  margin: 0 0.2em; /* Add space between names */
+}
+
+.hero-tagline {
+  position: absolute;
+  bottom: 4em;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  z-index: 1;
+  padding: 0 1rem;
+}
+
+.hero-tagline p {
+  color: var(--bg);
+  letter-spacing: 0.2em;
+  border: 1px dashed var(--bg200);
+  padding: 0.75em 1.5em;
+  border-radius: 0.5em;
+  background-color: rgba(15, 15, 15, 0.3);
+  text-align: center;
+  width: 100%;
+  max-width: 600px;
 }
 
 .sticky-titles {
@@ -132,6 +145,43 @@
   border-radius: 1em;
 }
 
+/* Add responsive styles for smaller screens */
+@media (max-width: 768px) {
+  .hero-header {
+    flex-direction: column; /* Stack names vertically on mobile */
+  }
+  
+  .hero-header h1 {
+    margin: 0.1em 0; /* Adjust vertical spacing between names on mobile */
+  }
+  
+  .hero-tagline {
+    bottom: 3em;
+  }
+  
+  .hero-tagline p {
+    letter-spacing: 0.1em;
+    padding: 0.5em 1em;
+    font-size: 0.9em;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-header h1 {
+    font-size: 4.5rem;
+  }
+  
+  .hero-tagline {
+    bottom: 2em;
+  }
+  
+  .hero-tagline p {
+    letter-spacing: 0.05em;
+    padding: 0.5em 0.75em;
+    font-size: 0.8em;
+  }
+}
+
 @media (max-width: 1000px) {
   .hero,
   .sticky-titles,
@@ -164,4 +214,132 @@
   .hobby {
     aspect-ratio: 5/3;
   }
+}
+
+.home-work-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 2em;
+}
+
+.hobbies {
+  width: 100vw;
+  padding: 2em;
+  padding-bottom: 0;
+  display: flex;
+  gap: 1em;
+}
+
+.hobby {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  aspect-ratio: 1;
+  border: 1px dashed var(--fg);
+  border-radius: 1em;
+}
+
+/* Add responsive styles for smaller screens */
+@media (max-width: 768px) {
+  .hero-header {
+    flex-direction: column; /* Stack names vertically on mobile */
+  }
+  
+  .hero-header h1 {
+    margin: 0.1em 0;
+        font-size: 4.5rem; /* Adjust vertical spacing between names on mobile */
+  }
+  
+  .hero-tagline {
+    bottom: 3em;
+  }
+  
+  .hero-tagline p {
+    letter-spacing: 0.1em;
+    padding: 0.5em 1em;
+    font-size: 0.9em;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-header h1 {
+    font-size: 4.5rem;
+  }
+  
+  .hero-tagline {
+    bottom: 2em;
+  }
+  
+  .hero-tagline p {
+    letter-spacing: 0.05em;
+    padding: 0.5em 0.75em;
+    font-size: 0.8em;
+  }
+}
+
+@media (max-width: 1000px) {
+  .hero,
+  .sticky-titles,
+  .sticky-work-header,
+  .hobbies {
+    padding: 1.25em;
+  }
+
+  .sticky-titles h2 {
+    width: 90%;
+  }
+
+  .hobbies {
+    padding-bottom: 0;
+  }
+
+  .home-work {
+    padding: 8em 1.25em;
+  }
+
+  .home-work-list {
+    width: 100%;
+  }
+
+  .hobbies {
+    flex-direction: column;
+    gap: 1.25em;
+  }
+
+  .hobby {
+    aspect-ratio: 5/3;
+  }
+}
+
+.home-work-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 2em;
+}
+
+.hobbies {
+  width: 100vw;
+  padding: 2em;
+  padding-bottom: 0;
+  display: flex;
+  gap: 1em;
+}
+
+.hobby {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  aspect-ratio: 1;
+  border: 1px dashed var(--fg);
+  border-radius: 1em;
 }

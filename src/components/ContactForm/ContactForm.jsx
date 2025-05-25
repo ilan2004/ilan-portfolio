@@ -22,14 +22,14 @@ const ContactForm = () => {
             <h3>Start a Conversation</h3>
 
             <p>
-              Have a story in mind? Let’s bring it to life. I’d love to hear
-              what you’re working on and explore how we can collaborate.
-            </p>
+  Got a story to tell or an idea to build?  
+  I’d love to hear what drives you —  
+  and see what we can create together.
+</p>
           </div>
 
           <div className="contact-form-availability">
             <p className="primary sm">Available for Freelance</p>
-            <p className="primary sm">Clients worldwide</p>
           </div>
         </div>
 
