@@ -227,12 +227,12 @@ const Home = () => {
           </div>
           <div className="hobby">
             <AnimatedCopy tag="h4" animateOnScroll={true}>
-            Cinematography
+            DEVELOP
             </AnimatedCopy>
           </div>
           <div className="hobby">
             <AnimatedCopy tag="h4" animateOnScroll={true}>
-              Develop
+            Cinematography
             </AnimatedCopy>
           </div>
         </section>

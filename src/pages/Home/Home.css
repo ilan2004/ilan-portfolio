@@ -141,8 +141,10 @@
   align-items: center;
   text-align: center;
   aspect-ratio: 1;
-  border: 1px dashed var(--fg);
+  border: 1px dashed var(--bg);
+  background-color: var(--fg);
   border-radius: 1em;
+  color:var(--bg);
 }
 
 /* Add responsive styles for smaller screens */
