@@ -1,5 +1,5 @@
 import workList from "../../data/workList";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 import { Link } from "react-router-dom";
 import "./Home.css";
 
@@ -16,6 +16,9 @@ gsap.registerPlugin(ScrollTrigger);
 
 import Transition from "../../components/Transition/Transition";
 import CloudinaryImage from "../../components/CloudinaryImage/index";
+import Hero from "../../components/Home/Hero";
+import AboutMe from "../../components/Home/AboutMe";
+import Hobbies from "../../components/Home/Hobbies";
 
 const Home = () => {
   const workItems = Array.isArray(workList) ? workList : [];
@@ -23,6 +26,49 @@ const Home = () => {
   const titlesRef = useRef([]);
   const stickyWorkHeaderRef = useRef(null);
   const homeWorkRef = useRef(null);
+
+  // Chat background rotation (images from public/home/*)
+  const [backgroundImage, setBackgroundImage] = useState("/home/sunflowersketch.png");
+  const imageList = [
+    "/home/handrose.png",
+    "/home/sunflowersketch.png",
+    "/home/peony.png",
+    "/home/hummingbird.png",
+    "/home/howl.png",
+    "/home/hokusai.png",
+    "/home/christ.png",
+    "/home/metro.png",
+    "/home/wave.png",
+    "/home/room.png",
+    "/home/angel.png",
+  ];
+
+  const changeBackground = useCallback(() => {
+    if (imageList.length === 0) return;
+    let randomIndex;
+    let newImage;
+    do {
+      randomIndex = Math.floor(Math.random() * imageList.length);
+      newImage = imageList[randomIndex];
+    } while (newImage === backgroundImage && imageList.length > 1);
+    setBackgroundImage(newImage);
+  }, [backgroundImage, imageList]);
+
+  const toggleGallery = () => {
+    // Just randomize the background
+    changeBackground();
+  };
+
+  useEffect(() => {
+    // Auto-rotate chat background every 45s
+    const bgInterval = setInterval(() => {
+      changeBackground();
+    }, 45000);
+
+    return () => {
+      clearInterval(bgInterval);
+    };
+  }, [changeBackground]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -137,45 +183,9 @@ const Home = () => {
   return (
     <ReactLenis root>
       <div className="page home">
-        <section className="hero">
-          <div className="hero-header">
-            <AnimatedCopy tag="h1" animateOnScroll={false} delay={0.7}>
-              Ilan
-            </AnimatedCopy>
-            <AnimatedCopy tag="h1" animateOnScroll={false} delay={0.8}>
-              Usman
-            </AnimatedCopy>
-          </div>
-          <div className="hero-tagline">
-            <AnimatedCopy tag="p" animateOnScroll={false} delay={1.0} className="primary">
-              Developer • Storyteller • tinkerer
-            </AnimatedCopy>
-          </div>
-        </section>
+        <Hero backgroundImage={backgroundImage} onChangeBackgroundAction={toggleGallery} />
 
-        <section ref={stickyTitlesRef} className="sticky-titles">
-  <div className="sticky-titles-nav">
-    <p className="primary sm">About Me</p>
-    <p className="primary sm">Let’s Connect</p>
-  </div>
-  <div className="sticky-titles-footer">
-    <p className="primary sm">Curiosity-Driven Tech</p>
-    <p className="primary sm">Open to Collaborations</p>
-  </div>
-
-  <h2 ref={(el) => (titlesRef.current[0] = el)}>
-    I approach technology the way Da Vinci approached art—
-    exploring different fields and connecting ideas.
-  </h2>
-  <h2 ref={(el) => (titlesRef.current[1] = el)}>
-    From software engineering to cinematic storytelling,
-    I blend disciplines to build meaningful experiences.
-  </h2>
-  <h2 ref={(el) => (titlesRef.current[2] = el)}>
-    This portfolio is a reflection of my belief:
-    true innovation happens at the intersections.
-  </h2>
-</section>
+        <AboutMe stickyTitlesRef={stickyTitlesRef} titlesRef={titlesRef} />
 
 
         <section ref={stickyWorkHeaderRef} className="sticky-work-header">
@@ -214,28 +224,7 @@ const Home = () => {
 
         {/* <Reviews /> */}
 
-        <section className="hobbies">
-          <div className="hobby">
-            <AnimatedCopy tag="h4" animateOnScroll={true}>
-            Product
-            </AnimatedCopy>
-          </div>
-          <div className="hobby">
-            <AnimatedCopy tag="h4" animateOnScroll={true}>
-            Storytelling
-            </AnimatedCopy>
-          </div>
-          <div className="hobby">
-            <AnimatedCopy tag="h4" animateOnScroll={true}>
-            DEVELOP
-            </AnimatedCopy>
-          </div>
-          <div className="hobby">
-            <AnimatedCopy tag="h4" animateOnScroll={true}>
-            Cinematography
-            </AnimatedCopy>
-          </div>
-        </section>
+        <Hobbies />
 
         <ContactForm />
         <Footer />

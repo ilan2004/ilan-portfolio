@@ -4,38 +4,49 @@
   height: 100svh;
   overflow: hidden;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-around;
   align-items: center;
+  gap: 0.5rem;
   padding: 2em;
   background: linear-gradient(135deg, var(--fg) 0%, #2d2d2d 100%);
 }
 
+/* Subtle inline margins to reduce perceived gap between columns */
+.hero > :first-child { margin-right: clamp(0.5rem, 2vw, 1rem); }
+.hero > :last-child  { margin-left:  clamp(0.5rem, 2vw, 1rem); }
+
+
+
 .hero-header {
   position: relative;
-  width: 100%;
   display: flex;
-  flex-direction: row; /* Keep names in a row for desktop */
-  align-items: center; /* Center align the names */
-  justify-content: center;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: baseline;
+  justify-content: flex-start;
   z-index: 1;
+  gap: 0.5rem;
+  white-space: nowrap;
 }
 
 .hero-header h1 {
   color: var(--bg);
   line-height: 1;
   text-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-  margin: 0 0.2em; /* Add space between names */
+  margin: 0;
+  font-size: clamp(3rem, 7vw, 4.5rem);
 }
 
 .hero-tagline {
-  position: absolute;
-  bottom: 4em;
-  width: 100%;
+  position: relative;
+  bottom: auto;
+  width: auto;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   z-index: 1;
-  padding: 0 1rem;
+  padding: 0;
+  margin-top: 1rem;
 }
 
 .hero-tagline p {
@@ -49,6 +60,9 @@
   width: 100%;
   max-width: 600px;
 }
+
+/* Desktop-first: mobile tagline hidden by default */
+.hero-tagline--mobile { display: none; }
 
 .sticky-titles {
   position: relative;
@@ -112,6 +126,7 @@
 .home-work-list {
   width: 40%;
   margin: 0 auto;
+  padding: 0;
   display: flex;
   flex-direction: column;
   gap: 8em;
@@ -149,38 +164,86 @@
 
 /* Add responsive styles for smaller screens */
 @media (max-width: 768px) {
+  .hero {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.35rem; /* tighter spacing on mobile */
+    padding: 1.1em;
+    padding-top: 6.5rem; /* more space below navbar */
+    padding-top: calc(6.5rem + env(safe-area-inset-top, 0px));
+    height: auto;
+    min-height: 100svh;
+  }
+
+  .hero > * {
+    width: 100%;
+    max-width: 640px;
+    margin: 0; /* remove side margins on mobile */
+  }
+
+  /* Group chat + mobile tagline vertically with tight spacing */
+  .hero-chatGroup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem; /* larger gap between chat and mobile tagline */
+    width: 100%;
+  }
+
+  /* Remove any extra margins inside the group */
+  .hero-chat { margin: 0; margin-bottom: 0.5rem; }
+  .hero-chat > * { margin: 0; }
+
+  /* Make sure mobile tagline sits on top of chat and is visible */
+  .hero-tagline--mobile { position: relative; z-index: 1; }
+
+  /* Minimal separation between text block and chat on mobile */
+  .hero > :last-child { margin-top: 0.05rem; }
+
   .hero-header {
-    flex-direction: column; /* Stack names vertically on mobile */
+    flex-direction: row; /* keep names inline */
+    justify-content: center;
+    text-align: center;
   }
   
   .hero-header h1 {
-    margin: 0.1em 0; /* Adjust vertical spacing between names on mobile */
+    margin: 0.02em 0;
+    font-size: clamp(1.2rem, 8vw, 1.6rem);
   }
   
-  .hero-tagline {
-    bottom: 3em;
-  }
+  .hero-tagline { bottom: 0; justify-content: center; }
   
-  .hero-tagline p {
-    letter-spacing: 0.1em;
-    padding: 0.5em 1em;
-    font-size: 0.9em;
+  .hero-tagline p { letter-spacing: 0.06em; padding: 0.5em 0.9em; font-size: 0.78em; }
+
+  /* Swap taglines for mobile */
+  .hero-tagline--desktop { display: none; }
+  .hero-tagline--mobile {
+    display: flex;
+    justify-content: center;
+    margin-top: 0.75rem;
   }
 }
 
 @media (max-width: 480px) {
+  .hero { 
+    padding-top: 7rem; /* extra below navbar on very small phones */
+    padding-top: calc(7rem + env(safe-area-inset-top, 0px));
+  }
+
+  /* Ensure text block does not collapse into the navbar */
+  .hero-text { margin-top: 0; }
+
   .hero-header h1 {
-    font-size: 4.5rem;
+    font-size: clamp(1.3rem, 10vw, 1.8rem);
   }
   
-  .hero-tagline {
-    bottom: 2em;
-  }
+  .hero-tagline { bottom: 0.2em; }
   
   .hero-tagline p {
-    letter-spacing: 0.05em;
-    padding: 0.5em 0.75em;
-    font-size: 0.8em;
+    letter-spacing: 0.04em;
+    padding: 0.4em 0.7em;
+    font-size: 0.7em;
   }
 }
 
@@ -246,15 +309,37 @@
   border-radius: 1em;
 }
 
+/* Final overrides to ensure mobile hero styles are not overwritten by earlier duplicate blocks */
+@media (max-width: 768px) {
+  .hero .hero-header h1 {
+    font-size: clamp(1.28rem, 8.8vw, 1.72rem) !important; /* slightly larger */
+    margin: 0.02em 0 !important;
+  }
+  .hero {
+    padding-top: calc(6.5rem + env(safe-area-inset-top, 0px)) !important;
+    gap: 0.35rem !important;
+  }
+  .hero-chatGroup { gap: 2rem !important; }
+}
+
+@media (max-width: 480px) {
+  .hero .hero-header h1 {
+    font-size: clamp(1.38rem, 10.6vw, 1.9rem) !important; /* slightly larger on very small phones */
+  }
+  .hero {
+    padding-top: calc(7rem + env(safe-area-inset-top, 0px)) !important;
+  }
+}
+
 /* Add responsive styles for smaller screens */
 @media (max-width: 768px) {
   .hero-header {
-    flex-direction: column; /* Stack names vertically on mobile */
+    flex-direction: row; /* Keep names on one line on mobile */
   }
   
   .hero-header h1 {
     margin: 0.1em 0;
-        font-size: 4.5rem; /* Adjust vertical spacing between names on mobile */
+        font-size: inherit; /* Use responsive clamp size */
   }
   
   .hero-tagline {
