@@ -82,20 +82,27 @@ const Home = () => {
     gsap.set(titles[1], { opacity: 0, scale: 0.75 });
     gsap.set(titles[2], { opacity: 0, scale: 0.75 });
 
+    // Shorter scroll experience on mobile
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+    const pinEndDistance = isMobile ? window.innerHeight * 3 : window.innerHeight * 5;
+
     const pinTrigger = ScrollTrigger.create({
       trigger: stickySection,
       start: "top top",
-      end: `+=${window.innerHeight * 5}`,
+      end: `+=${pinEndDistance}`,
       pin: true,
       pinSpacing: true,
     });
+
+    const tlEndDistance = isMobile ? window.innerHeight * 2.4 : window.innerHeight * 4;
+    const scrubAmount = isMobile ? 0.35 : 0.5;
 
     const masterTimeline = gsap.timeline({
       scrollTrigger: {
         trigger: stickySection,
         start: "top top",
-        end: `+=${window.innerHeight * 4}`,
-        scrub: 0.5,
+        end: `+=${tlEndDistance}`,
+        scrub: scrubAmount,
       },
     });
 
