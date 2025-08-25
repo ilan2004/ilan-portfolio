@@ -84,7 +84,7 @@ const Home = () => {
 
     // Shorter scroll experience on mobile
     const isMobile = window.matchMedia('(max-width: 768px)').matches;
-    const pinEndDistance = isMobile ? window.innerHeight * 3 : window.innerHeight * 5;
+    const pinEndDistance = isMobile ? window.innerHeight * 2.2 : window.innerHeight * 5;
 
     const pinTrigger = ScrollTrigger.create({
       trigger: stickySection,
@@ -94,8 +94,8 @@ const Home = () => {
       pinSpacing: true,
     });
 
-    const tlEndDistance = isMobile ? window.innerHeight * 2.4 : window.innerHeight * 4;
-    const scrubAmount = isMobile ? 0.35 : 0.5;
+    const tlEndDistance = isMobile ? window.innerHeight * 1.6 : window.innerHeight * 4;
+    const scrubAmount = isMobile ? 0.25 : 0.5;
 
     const masterTimeline = gsap.timeline({
       scrollTrigger: {
