@@ -1,4 +1,4 @@
-import { useChat } from 'ai/react';
+import { useChat } from '@ai-sdk/react';
 import { useEffect, useRef } from 'react';
 
 // Helper function to render Markdown links as React elements
