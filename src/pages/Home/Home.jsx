@@ -30,17 +30,10 @@ const Home = () => {
   // Chat background rotation (images from public/home/*)
   const [backgroundImage, setBackgroundImage] = useState("/home/sunflowersketch.png");
   const imageList = [
-    "/home/handrose.png",
-    "/home/sunflowersketch.png",
-    "/home/peony.png",
-    "/home/hummingbird.png",
-    "/home/howl.png",
-    "/home/hokusai.png",
-    "/home/christ.png",
-    "/home/metro.png",
-    "/home/wave.png",
-    "/home/room.png",
-    "/home/angel.png",
+    "/home/mountain.png",
+    "/home/group.png",
+    "/home/amazon.png",
+    "/home/lap.png",
   ];
 
   const changeBackground = useCallback(() => {
