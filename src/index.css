@@ -112,7 +112,7 @@ a {
   display: block;
   text-decoration: none;
   text-transform: uppercase;
-  color: var(--fg);
+
   font-family: "Messina Sans Mono";
   font-size: 0.8rem;
   font-weight: 600;

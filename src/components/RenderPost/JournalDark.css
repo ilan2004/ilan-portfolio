@@ -181,7 +181,7 @@
   line-height: 1.9;
   color: #1a1611;
   text-align: left;
-  text-indent: 1.5em;
+  text-indent: 0;
 }
 
 .journal-light .journal-content h2 {
@@ -191,18 +191,11 @@
   margin: 2.5rem 0 1.5rem 0;
   text-indent: 0;
   position: relative;
-  padding-left: 25px;
+  padding-left: 0;
   line-height: 1.3;
 }
 
-.journal-light .journal-content h2::before {
-  content: '§';
-  position: absolute;
-  left: 0;
-  color: #8b7355;
-  opacity: 0.8;
-  font-size: 1.2em;
-}
+.journal-light .journal-content h2::before { content: none; }
 
 .journal-light .journal-content h3 {
   font-family: "Crimson Text", Georgia, Cambria, "Times New Roman", Times, serif;
@@ -439,7 +432,7 @@
   line-height: 1.9;
   color: #f0e6d2;
   text-align: left;
-  text-indent: 1.5em;
+  text-indent: 0;
   font-family: "Averia Serif Libre", Georgia, Cambria, "Times New Roman", Times, serif;
 }
 
@@ -450,18 +443,11 @@
   margin: 2.5rem 0 1.5rem 0;
   text-indent: 0;
   position: relative;
-  padding-left: 25px;
+  padding-left: 0;
   line-height: 1.3;
 }
 
-.journal-dark .journal-content h2::before {
-  content: '§';
-  position: absolute;
-  left: 0;
-  color: #d4c5a0;
-  opacity: 0.8;
-  font-size: 1.2em;
-}
+.journal-dark .journal-content h2::before { content: none; }
 
 .journal-dark .journal-content h3 {
   font-family: "Averia Serif Libre", Georgia, Cambria, "Times New Roman", Times, serif;
@@ -758,7 +744,7 @@
   .journal-light .journal-content,
   .journal-dark .journal-content {
     font-size: 1.05rem;
-    text-indent: 1em;
+    text-indent: 0;
     line-height: 1.8;
   }
 
@@ -811,7 +797,7 @@
   .journal-light .journal-content h2,
   .journal-dark .journal-content h2 {
     font-size: 1.5rem;
-    padding-left: 20px;
+    padding-left: 0;
   }
 
   .journal-light .journal-content h3,
