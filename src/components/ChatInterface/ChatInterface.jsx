@@ -57,9 +57,8 @@ export default function ChatInterface({
 
   // Light-weight suggested prompts to help users understand the chat purpose
   const suggestions = [
-    "What did I learn from 1 year of blogging?",
-    "Summarize my 'dream' post in 3 bullets",
-    "Which projects should a recruiter see first?",
+    "What’s this chat for?",
+    "Summarize my latest blog post.",
   ];
 
   const handleInputChange = (e) => setInput(e.target.value);
