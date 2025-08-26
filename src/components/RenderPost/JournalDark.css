@@ -167,7 +167,7 @@
 .journal-light .page-divider::after {
   content: '❦';
   position: absolute;
-  top: -12px;
+  top: -4px;
   left: 50%;
   transform: translateX(-50%);
   background: #fefdfb;
@@ -418,7 +418,7 @@
 .journal-dark .page-divider::after {
   content: '❦';
   position: absolute;
-  top: -12px;
+  top: 104px;
   left: 50%;
   transform: translateX(-50%);
   background: #2a241b;
@@ -551,7 +551,7 @@
 .page-header::after {
   content: '❦';
   position: absolute;
-  bottom: -20px;
+  bottom: -26px;
   left: 50%;
   transform: translateX(-50%);
   font-size: 24px;
