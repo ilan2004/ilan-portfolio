@@ -229,3 +229,52 @@
   font-style: normal;
   font-display: swap;
 }
+
+/* Averia Serif Libre */
+@font-face {
+  font-family: "Averia Serif Libre";
+  src: url("/fonts/AveriaSerifLibre-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Averia Serif Libre";
+  src: url("/fonts/AveriaSerifLibre-Italic.ttf") format("truetype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Averia Serif Libre";
+  src: url("/fonts/AveriaSerifLibre-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Averia Serif Libre";
+  src: url("/fonts/AveriaSerifLibre-LightItalic.ttf") format("truetype");
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Averia Serif Libre";
+  src: url("/fonts/AveriaSerifLibre-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Averia Serif Libre";
+  src: url("/fonts/AveriaSerifLibre-BoldItalic.ttf") format("truetype");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}

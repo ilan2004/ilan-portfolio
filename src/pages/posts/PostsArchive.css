@@ -1,0 +1,248 @@
+/* Inspired by ContactForm.css, inverted card look */
+.posts-archive {
+  /* Add extra top padding so it's not hidden behind a fixed navbar */
+  padding: 7em 2em 2em;
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  margin: 2em;
+  background-color: var(--fg);
+  color: var(--bg);
+  border-radius: 1em;
+}
+
+.posts-archive h1,
+.posts-archive h3,
+.posts-archive p {
+  color: var(--bg);
+}
+
+.posts-archive-row.copy {
+  width: 100%;
+  display: flex;
+  gap: 1em;
+}
+.posts-archive-row-copy-item { flex: 1; }
+.posts-archive-row-copy-item:nth-child(2) { text-align: center; }
+.posts-archive-row-copy-item:nth-child(3) { text-align: right; }
+
+.posts-archive-row.main {
+  display: flex;
+  gap: 1em;
+}
+.posts-archive-col { flex: 1; }
+.posts-archive-col.left {
+  flex: 0 0 25%;
+  max-width: 25%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25em;
+  align-items: flex-start;
+  
+}
+.posts-archive-col.right {
+  flex: 0 0 75%;
+  max-width: 75%;
+}
+
+/* Left column info layout */
+.posts-archive-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5em;
+  text-align: left;
+}
+
+/* Prevent single-word last line in short sentences */
+.avoid-widows {
+  text-wrap: balance;
+
+}
+
+/* Horizontal actions: tags · random · search */
+.posts-archive-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25em;
+  white-space: nowrap;
+}
+
+/* Centered hero heading + description */
+.posts-archive-hero {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+.posts-archive-hero h1 {
+  font-size: 6vw;
+  font-weight: 800;
+}
+.posts-archive-hero p {
+  opacity: 0.9;
+}
+
+.posts-archive-info {
+  /* Make divider shorter by shrinking to content */
+  width: fit-content;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: initial;
+  gap: 0.5em;
+  text-align: left;
+  border-top: 1px dashed var(--bg);
+  padding: 0.75em 0 0;
+}
+.posts-archive-actions a {
+  color: var(--bg);
+  text-decoration: underline;
+}
+
+.posts-list {
+  /* Contrast with container background */
+  background: var(--bg);
+  color: var(--fg);
+  border: 1px solid var(--fg200);
+  border-radius: 0.75em;
+  overflow: hidden;
+}
+/* Header row for Title / Date */
+.posts-list-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75em 1em;
+  border-bottom: 2px dashed var(--fg);
+}
+.posts-list-header-title { color: color-mix(in srgb, var(--fg) 85%, transparent); font-weight: 600; }
+.posts-list-header-date { color: color-mix(in srgb, var(--fg) 70%, transparent); font-weight: 600; }
+/* Ensure paragraphs in the list use the correct color despite global p rules */
+.posts-list p { color: var(--fg); }
+.posts-item:hover p { color: var(--bg); }
+.posts-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85em 1em;
+  /* Dashed divider like the site style (thicker for visibility) */
+  border-top: 2px dashed var(--fg);
+  transition: background-color 200ms ease;
+}
+.posts-item:first-child { border-top: 0; }
+/* Add a bottom divider to close the list visually */
+.posts-item:last-child { border-bottom: 2px dashed var(--fg); }
+/* Invert colors on hover */
+.posts-item:hover { background: var(--fg); color: var(--bg); border-top-color: var(--bg); }
+.posts-item:hover:last-child { border-bottom-color: var(--bg); }
+.posts-item-title { color: var(--fg); }
+.posts-item:hover .posts-item-title { color: var(--bg); }
+.posts-item-date { color: color-mix(in srgb, var(--fg) 60%, transparent); font-size: 0.9em; }
+.posts-item:hover .posts-item-date { color: color-mix(in srgb, var(--bg) 60%, transparent); }
+
+/* Chip grid styles (used on /tags) */
+.tags-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.75rem;
+}
+.tag-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.7rem;
+  border: 1px dashed var(--fg);
+  border-radius: 999px;
+  color: var(--fg);
+  background: var(--bg);
+  transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease;
+}
+.tag-chip .tag-count { font-size: 0.85em; opacity: 0.75; }
+.tag-chip:hover { background: var(--fg); color: var(--bg); border-color: var(--bg); }
+
+/* Box styling for posts list container */
+.posts-list {
+  border: 1px dashed var(--fg);
+  border-radius: 0.75rem;
+  background: var(--bg);
+}
+/* Ensure header and items have consistent inset padding inside the box */
+.posts-list-header,
+.posts-item { padding-inline: 0.75rem; }
+.posts-list-header { padding-block: 0.5rem; }
+
+/* Avoid double borders against the outer box */
+.posts-list .posts-item:first-child { border-top-color: transparent; }
+.posts-list .posts-item:last-child { border-bottom-color: transparent; }
+.posts-list .posts-item:hover:first-child { border-top-color: transparent; }
+.posts-list .posts-item:hover:last-child { border-bottom-color: transparent; }
+
+/* Search page themed controls */
+.search-input {
+  width: 100%;
+  padding: 0.6em 0.8em;
+  background: var(--bg);
+  color: var(--fg);
+  border: 1px dashed var(--fg);
+  border-radius: 0.6em;
+}
+.search-input::placeholder { opacity: 0.6; color: var(--fg); }
+.search-input:focus { outline: none; box-shadow: 0 0 0 3px color-mix(in srgb, var(--bg) 85%, var(--fg) 15%); }
+
+.search-toggle {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+.toggle-btn {
+  padding: 0.35rem 0.7rem;
+  font-size: 0.9rem;
+  border: 1px dashed var(--bg);
+  border-radius: 0.6rem;
+  color: var(--bg);
+  background: transparent;
+  transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease;
+}
+.toggle-btn:hover { background: color-mix(in srgb, var(--bg) 15%, transparent); }
+.toggle-btn.active { background: var(--bg); color: var(--fg); border-color: var(--bg); }
+
+.loading-track { width: 12rem; height: 0.25rem; background: color-mix(in srgb, var(--bg) 20%, transparent); border-radius: 999px; overflow: hidden; }
+.loading-bar { width: 100%; height: 100%; background: var(--bg); animation: loading-bar 1.2s linear infinite; }
+@keyframes loading-bar { from { transform: translateX(-100%); } to { transform: translateX(100%); } }
+
+.search-result {
+  border-left: 2px dashed var(--bg);
+  padding-left: 1rem;
+  padding-block: 0.6rem;
+  margin-bottom: 0.75rem;
+  border-radius: 0.5rem;
+  transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease;
+}
+.search-result:hover { background: color-mix(in srgb, var(--bg) 12%, transparent); }
+.search-result a { color: inherit; text-decoration: none; }
+.search-result h3 { color: var(--bg); }
+.search-result:hover h3 { text-decoration: underline; }
+.search-score { font-size: 0.75rem; padding: 0.15rem 0.4rem; border-radius: 999px; background: color-mix(in srgb, var(--bg) 15%, transparent); color: var(--bg); font-weight: 600; }
+.search-chunkmeta { font-size: 0.75rem; color: color-mix(in srgb, var(--bg) 70%, transparent); font-weight: 600; }
+
+/* Force link color inside the left dark Read/Navigate box */
+.read-nav-box a {
+  color: var(--bg) !important;
+  text-decoration: underline;
+}
+.read-nav-box a:hover { opacity: 0.9; }
+
+@media (max-width: 900px) {
+  .posts-archive { margin: 1.25em; }
+  .posts-archive-row.copy { flex-direction: column; gap: 0.25em; }
+  .posts-archive-row-copy-item { text-align: center; }
+  .posts-archive-row.main { flex-direction: column; gap: 1.5em; }
+  .posts-archive-info { width: 100%; flex-direction: column; gap: 0.5em; text-align: left; align-items: flex-start; }
+  .posts-archive-col.left,
+  .posts-archive-col.right {
+    flex: 1 1 auto;
+    max-width: 100%;
+  }
+}

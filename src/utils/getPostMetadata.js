@@ -1,39 +1,73 @@
-// utils/getPostMetadata.js
-import fs from 'fs';
-import path from 'path';
-import matter from 'gray-matter';
+// utils/getPostMetadata.js (Vite client-safe, no Node/Buffer)
+
+// Minimal frontmatter parser: supports YAML-like "key: value" until a dashed fence ends
+function parseFrontmatter(raw) {
+  const text = String(raw);
+  const fmStart = text.startsWith('---\n') || text.startsWith('---\r\n');
+  if (!fmStart) return { data: {}, content: text };
+
+  // Find closing fence: any line composed only of 3+ dashes
+  const lines = text.split(/\r?\n/);
+  let endIndex = -1;
+  for (let i = 1; i < lines.length; i++) {
+    if (/^-{3,}\s*$/.test(lines[i])) { endIndex = i; break; }
+  }
+  // Fallback: if not found but a long dashed line exists, accept it
+  if (endIndex === -1) {
+    for (let i = 1; i < lines.length; i++) {
+      if (/^-{5,}\s*$/.test(lines[i])) { endIndex = i; break; }
+    }
+  }
+  if (endIndex === -1) return { data: {}, content: text };
+
+  const headerLines = lines.slice(1, endIndex);
+  const body = lines.slice(endIndex + 1).join('\n');
+
+  const data = {};
+  for (const line of headerLines) {
+    const m = line.match(/^([A-Za-z0-9_\-]+):\s*(.*)$/);
+    if (!m) continue;
+    const key = m[1].trim();
+    let value = m[2].trim();
+    if ((value.startsWith('"') && value.endsWith('"')) || (value.startsWith('\'') && value.endsWith('\''))) {
+      value = value.slice(1, -1);
+    }
+    data[key] = value;
+  }
+  return { data, content: body };
+}
 
 export default function getPostMetadata(getDrafts = false) {
-  const folder = getDrafts ? 'posts/drafts/' : 'posts/';
-  const absFolder = path.isAbsolute(folder) ? folder : path.join(process.cwd(), folder);
+  // Eagerly import all markdown files as raw strings using Vite's glob import
+  // Only include drafts if explicitly requested
+  const allModules = import.meta.glob('/posts/**/*.md', { as: 'raw', eager: true });
 
-  if (!fs.existsSync(absFolder)) {
-    return [];
-  }
+  const entries = Object.entries(allModules).filter(([filePath]) => {
+    const isDraft = filePath.includes('/posts/drafts/');
+    return getDrafts ? isDraft : !isDraft;
+  });
 
-  const files = fs.readdirSync(absFolder);
-  const markdownPosts = files.filter((file) => file.endsWith('.md'));
-
-  const posts = markdownPosts.map((fileName) => {
+  const posts = entries.map(([filePath, raw]) => {
     try {
-      const fullPath = path.join(absFolder, fileName);
-      const fileContents = fs.readFileSync(fullPath, 'utf8');
-      const { data, content } = matter(fileContents);
+      const { data, content } = parseFrontmatter(raw);
+      const slug = filePath.split('/').pop().replace(/\.md$/, '');
 
       return {
-        title: data.title ?? fileName.replace('.md', ''),
-        date: data.date ?? null,
-        tags: data.tags ?? [],
+        title: data && data.title ? data.title : slug,
+        date: data && data.date ? data.date : null,
+        // keep tags as a string if provided; else empty string
+        tags: data && data.tags ? data.tags : '',
         wordcount: (content.match(/\b\w+\b/gu) || []).length,
-        slug: fileName.replace('.md', ''),
+        slug,
       };
     } catch (error) {
-      console.error(`Error parsing frontmatter in file: ${fileName}`, error);
+      const slug = filePath.split('/').pop().replace(/\.md$/, '');
+      console.error(`Error parsing frontmatter in file: ${filePath}`, error);
       return {
-        title: `Error in ${fileName}`,
-        slug: fileName.replace('.md', ''),
+        title: `Error in ${slug}`,
+        slug,
         date: null,
-        tags: [],
+        tags: '',
         wordcount: 0,
       };
     }

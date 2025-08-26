@@ -12,6 +12,12 @@ import FAQ from "./pages/FAQ/FAQ";
 import Contact from "./pages/Contact/Contact";
 
 import { AnimatePresence } from "framer-motion";
+import PostsArchivePage from "./pages/posts/page.jsx";
+import PostPage from "./pages/posts/[slug]/page.jsx";
+import RandomPage from "./pages/random/page.tsx";
+import SearchPage from "./pages/search/page.tsx";
+import TagsPage from "./pages/tags/page.tsx";
+import TagDetailPage from "./pages/tags/[slug]/page.tsx";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -40,6 +46,12 @@ function App() {
           <Route path="/faq" element={<FAQ />} />
           <Route path="/work" element={<Work />} />
           <Route path="/sample-project" element={<Project />} />
+          <Route path="/posts" element={<PostsArchivePage />} />
+          <Route path="/posts/:slug" element={<PostPage />} />
+          <Route path="/random" element={<RandomPage />} />
+          <Route path="/search" element={<SearchPage />} />
+          <Route path="/tags" element={<TagsPage />} />
+          <Route path="/tags/:slug" element={<TagDetailPage />} />
         </Routes>
       </AnimatePresence>
     </>

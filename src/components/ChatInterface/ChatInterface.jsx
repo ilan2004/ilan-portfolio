@@ -147,7 +147,7 @@ export default function ChatInterface({
   };
 
   return (
-    <div className="bg-white rounded-2xl overflow-hidden w-full max-w-[340px] sm:max-w-[380px] mx-auto h-[66vh] sm:h-[72vh] max-h-[720px] flex flex-col shadow-card relative" style={{ border: '2px dashed var(--bg200)' }}>
+    <div className="bg-white rounded-2xl overflow-hidden w-full max-w-[340px] sm:max-w-[380px] mx-auto h-[66vh] sm:h-[72vh] max-h-[720px] flex flex-col shadow-card relative" style={{ border: '1px dashed var(--fg)' }}>
       <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
         <div className="absolute inset-0 top-[42px] bottom-[36px]">
           <img
