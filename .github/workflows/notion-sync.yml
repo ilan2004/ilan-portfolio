@@ -1,0 +1,61 @@
+name: Notion → Posts sync + Embeddings
+
+on:
+  schedule:
+    # Every 30 minutes; adjust as you like
+    - cron: '*/30 * * * *'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: notion-sync
+  cancel-in-progress: false
+
+jobs:
+  sync-and-embed:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Sync from Notion
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
+        run: npm run sync:notion
+
+      - name: Commit changes (if any)
+        run: |
+          if [ -n "$(git status --porcelain posts)" ]; then
+            git config user.name "github-actions"
+            git config user.email "github-actions@users.noreply.github.com"
+            git add posts
+            git commit -m "chore(posts): sync from Notion [skip ci]"
+            git push
+          else
+            echo "No changes in posts/"
+          fi
+
+      - name: Generate embeddings
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          VOYAGE_AI_API_KEY: ${{ secrets.VOYAGE_AI_API_KEY }}
+          PGSSLMODE: ${{ secrets.PGSSLMODE }}
+        run: node scripts/generateEmbeddings.js
+
+      - name: Trigger Vercel deploy (optional)
+        if: ${{ secrets.VERCEL_DEPLOY_HOOK != '' }}
+        run: |
+          curl -X POST -sS ${{ secrets.VERCEL_DEPLOY_HOOK }} || true
