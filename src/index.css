@@ -216,6 +216,11 @@ textarea::placeholder {
     line-height: 12vw;
   }
 
+/* subtle reusable card shadow for containers (chat, cards, etc.) */
+.shadow-card {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06), 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
   h2 {
     font-size: 10vw;
     line-height: 8vw;

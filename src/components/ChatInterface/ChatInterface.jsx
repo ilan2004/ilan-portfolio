@@ -28,8 +28,8 @@ function renderMarkdownLinks(text, role) {
             href={linkUrl}
             className={`${
               role === 'user'
-                ? 'text-white underline'
-                : 'text-blue-600 dark:text-blue-400 underline'
+                ? 'text-[var(--bg)] underline'
+                : 'text-[var(--fg)]/90 underline'
             } pointer-events-auto`}
             target="_blank"
             rel="noopener noreferrer"
@@ -55,10 +55,17 @@ export default function ChatInterface({
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
+  // Light-weight suggested prompts to help users understand the chat purpose
+  const suggestions = [
+    "What did I learn from 1 year of blogging?",
+    "Summarize my 'dream' post in 3 bullets",
+    "Which projects should a recruiter see first?",
+  ];
+
   const handleInputChange = (e) => setInput(e.target.value);
 
   async function handleSubmit(e) {
-    e.preventDefault();
+    if (e) e.preventDefault();
     const text = input.trim();
     if (!text || isLoading) return;
 
@@ -131,8 +138,17 @@ export default function ChatInterface({
     setMessages([]);
   };
 
+  const handleSuggestionClick = (q) => {
+    if (isLoading) return;
+    setInput(q);
+    // Submit immediately
+    setTimeout(() => {
+      handleSubmit({ preventDefault: () => {} });
+    }, 0);
+  };
+
   return (
-    <div className="bg-white rounded-2xl overflow-hidden w-full max-w-[340px] sm:max-w-[380px] mx-auto h-[66vh] sm:h-[72vh] max-h-[720px] flex flex-col shadow-lg relative" style={{ border: '2px dashed var(--bg200)' }}>
+    <div className="bg-white rounded-2xl overflow-hidden w-full max-w-[340px] sm:max-w-[380px] mx-auto h-[66vh] sm:h-[72vh] max-h-[720px] flex flex-col shadow-card relative" style={{ border: '2px dashed var(--bg200)' }}>
       <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
         <div className="absolute inset-0 top-[42px] bottom-[36px]">
           <img
@@ -144,13 +160,13 @@ export default function ChatInterface({
       </div>
 
       {/* Minimal header */}
-      <div className="bg-white h-[48px] flex items-center justify-between px-2 border-b border-gray-200 relative z-10">
+      <div className="bg-white h-[48px] flex items-center justify-between px-2 border-b border-[var(--bg200)] relative z-10">
         <div className="flex items-center">
           <div className="flex items-center gap-3 ml-1">
-            <div className="w-6 h-6 rounded-full bg-blue-500 flex items-center justify-center text-white text-xs font-semibold">
+            <div className="w-6 h-6 rounded-full bg-[var(--fg)] flex items-center justify-center text-[var(--bg)] text-xs font-semibold">
               I
             </div>
-            <span className="text-gray-600 text-sm font-normal">
+            <span className="text-[var(--fg)]/80 text-sm font-normal">
               Ilan
             </span>
           </div>
@@ -160,7 +176,7 @@ export default function ChatInterface({
           <button
             onClick={onChangeBackgroundAction}
             type="button"
-            className="text-gray-500 hover:text-gray-700 transition-colors"
+            className="text-[var(--fg)]/60 hover:text-[var(--fg)] transition-colors"
             aria-label="Change background"
             title="Change background"
           >
@@ -182,7 +198,7 @@ export default function ChatInterface({
           <button
             onClick={handleClear}
             type="button"
-            className="text-gray-500 hover:text-gray-700 transition-colors"
+            className="text-[var(--fg)]/60 hover:text-[var(--fg)] transition-colors"
             aria-label="Clear chat"
             title="Clear chat"
           >
@@ -217,8 +233,8 @@ export default function ChatInterface({
               <div
                 className={`max-w-[78%] md:max-w-[72%] rounded-2xl px-4 py-2.5 bubble-in ${
                   message.role === 'user'
-                    ? 'bg-[#0b93f6] text-white ml-auto'
-                    : 'bg-[#e5e5ea] text-black'
+                    ? 'bg-[var(--fg)] text-[var(--bg)] ml-auto'
+                    : 'bg-white text-[var(--fg)] border border-[var(--bg200)]'
                 }`}
               >
                 <div className="text-sm leading-relaxed break-words">
@@ -236,8 +252,8 @@ export default function ChatInterface({
                 <div
                   className={`text-[11px] mt-2 ${
                     message.role === 'user'
-                      ? 'text-white/90'
-                      : 'text-gray-500'
+                      ? 'text-[var(--bg)]/90'
+                      : 'text-[var(--fg)]/60'
                   }`}
                 >
                   {formatTime()}
@@ -251,11 +267,11 @@ export default function ChatInterface({
             messages.length > 0 &&
             messages[messages.length - 1].role === 'user' && (
               <div className="flex justify-start">
-                <div className="bg-[#e5e5ea] rounded-2xl px-4 py-2.5 user-select-none">
+                <div className="bg-white border border-[var(--bg200)] rounded-2xl px-4 py-2.5 user-select-none">
                   <div className="flex space-x-1.5">
-                    <div className="w-2 h-2 rounded-full bg-gray-400 animate-typing"></div>
-                    <div className="w-2 h-2 rounded-full bg-gray-400 animate-typing-middle"></div>
-                    <div className="w-2 h-2 rounded-full bg-gray-400 animate-typing-last"></div>
+                    <div className="w-2 h-2 rounded-full bg-[var(--fg)]/40 animate-typing"></div>
+                    <div className="w-2 h-2 rounded-full bg-[var(--fg)]/40 animate-typing-middle"></div>
+                    <div className="w-2 h-2 rounded-full bg-[var(--fg)]/40 animate-typing-last"></div>
                   </div>
                 </div>
               </div>
@@ -265,33 +281,51 @@ export default function ChatInterface({
         </div>
       </div>
 
+      {/* Suggestions (show when empty to explain the chat) */}
+      {messages.length === 0 && (
+        <div className="px-3 pb-2 pt-0 bg-white border-t border-[var(--bg200)] relative z-10">
+          <div className="flex flex-wrap gap-2">
+            {suggestions.map((s) => (
+              <button
+                key={s}
+                type="button"
+                onClick={() => handleSuggestionClick(s)}
+                className="px-3 py-2 rounded-full text-xs font-semibold bg-[var(--bg200)] text-[var(--fg)] hover:bg-[var(--fg)] hover:text-[var(--bg)] transition-colors"
+              >
+                {s}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
       {/* Minimal input area */}
-      <div className="px-2 py-3.5 bg-white border-t border-gray-200 relative z-10 user-select-none">
+      <div className="px-2 py-3.5 bg-white border-t border-[var(--bg200)] relative z-10 user-select-none">
         <form onSubmit={handleSubmit} className="flex items-center gap-3">
           <input
             type="text"
             value={input}
             onChange={handleInputChange}
             placeholder="Type a message..."
-            className="flex-1 px-4 py-3.5 bg-gray-100 text-gray-900 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0b93f6]/30 focus:border-[#0b93f6] text-sm placeholder-gray-500"
+            className="flex-1 px-4 py-3.5 bg-[var(--bg200)] text-[var(--fg)] border border-[var(--bg200)] rounded-lg focus:outline-none focus:ring-2 focus:ring-[color:rgba(31,31,31,0.15)] focus:border-[var(--fg)] text-sm placeholder-[var(--fg)]/50"
             disabled={isLoading}
           />
           <button
             type="submit"
             disabled={isLoading || !input.trim()}
             className={`${
-              input.trim() ? 'bg-[#0b93f6]' : 'bg-gray-200'
+              input.trim() ? 'bg-[var(--fg)]' : 'bg-[var(--bg200)]'
             } rounded-full p-2.5 mr-2 disabled:opacity-50 transition-colors user-select-none`}
             aria-label="Send message"
           >
             {isLoading ? (
-              <span className="inline-block animate-pulse w-4 h-4 text-white user-select-none">
+              <span className="inline-block animate-pulse w-4 h-4 text-[var(--bg)] user-select-none">
                 •••
               </span>
             ) : (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5 text-white"
+                className="h-5 w-5 text-[var(--bg)]"
                 viewBox="0 0 24 24"
                 fill="currentColor"
               >
