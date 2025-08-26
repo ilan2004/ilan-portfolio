@@ -1,5 +1,4 @@
-import { useChat } from '@ai-sdk/react';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 // Helper function to render Markdown links as React elements
 function renderMarkdownLinks(text, role) {
@@ -52,14 +51,67 @@ export default function ChatInterface({
   backgroundImage,
   onChangeBackgroundAction,
 }) {
-  const {
-    messages,
-    input,
-    handleInputChange,
-    handleSubmit,
-    isLoading,
-    setMessages,
-  } = useChat();
+  const [messages, setMessages] = useState([]);
+  const [input, setInput] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleInputChange = (e) => setInput(e.target.value);
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const text = input.trim();
+    if (!text || isLoading) return;
+
+    // Append user message
+    const userMsg = { id: crypto.randomUUID(), role: 'user', content: text };
+    setMessages((prev) => [...prev, userMsg]);
+    setInput('');
+    setIsLoading(true);
+
+    try {
+      // Prepare history including the new user message
+      const history = [...messages, userMsg].map((m) => ({ role: m.role, content: m.content }));
+      const resp = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ messages: history }),
+      });
+
+      if (!resp.ok || !resp.body) {
+        throw new Error('Chat request failed');
+      }
+
+      // Add placeholder assistant message
+      const assistantId = crypto.randomUUID();
+      setMessages((prev) => [...prev, { id: assistantId, role: 'assistant', content: '' }]);
+
+      const reader = resp.body.getReader();
+      const decoder = new TextDecoder();
+      let done = false;
+      while (!done) {
+        const { value, done: readerDone } = await reader.read();
+        done = readerDone;
+        if (value) {
+          const chunk = decoder.decode(value, { stream: true });
+          setMessages((prev) =>
+            prev.map((m) =>
+              m.id === assistantId ? { ...m, content: (m.content || '') + chunk } : m
+            )
+          );
+        }
+      }
+    } catch (err) {
+      // Append an error message from assistant
+      setMessages((prev) => [
+        ...prev,
+        { id: crypto.randomUUID(), role: 'assistant', content: 'sorry, something went wrong.' },
+      ]);
+      console.error(err);
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
   const messagesEndRef = useRef(null);
 
   // Only auto-scroll when a new message is added
@@ -155,7 +207,7 @@ export default function ChatInterface({
       {/* Messages Area with iMessage styling */}
       <div className="flex-1 overflow-y-auto relative z-10 p-5 sm:p-6">
         <div className="space-y-3">
-          {messages.map((message) => (
+          {messages.map((message, i) => (
             <div
               key={message.id}
               className={`flex ${
@@ -163,7 +215,7 @@ export default function ChatInterface({
               }`}
             >
               <div
-                className={`max-w-[78%] md:max-w-[72%] rounded-2xl px-4 py-2.5 ${
+                className={`max-w-[78%] md:max-w-[72%] rounded-2xl px-4 py-2.5 bubble-in ${
                   message.role === 'user'
                     ? 'bg-[#0b93f6] text-white ml-auto'
                     : 'bg-[#e5e5ea] text-black'
@@ -175,7 +227,11 @@ export default function ChatInterface({
                     message.role === 'user' || message.role === 'assistant'
                       ? message.role
                       : 'assistant'
-                  )}{' '}
+                  )}
+                  {/* Blinking caret while current assistant message is streaming */}
+                  {isLoading && i === messages.length - 1 && message.role === 'assistant' && (
+                    <span className="typing-caret" aria-hidden="true"></span>
+                  )}
                 </div>
                 <div
                   className={`text-[11px] mt-2 ${
