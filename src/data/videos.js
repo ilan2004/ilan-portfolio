@@ -82,7 +82,7 @@ const videos = [
   },
   {
     id: "vid-fasting",
-    title: "Fasting",
+    title: "Peace",
     publicId: "fasting_uyqysc",
     poster: poster("fasting_uyqysc", 2),
     link: "https://res.cloudinary.com/dkwgl0ek8/video/upload/v1756291818/fasting_uyqysc.mp4",
@@ -90,7 +90,7 @@ const videos = [
   },
   {
     id: "vid-rainy",
-    title: "Rainy",
+    title: "Rainy Days",
     publicId: "rainy_vxfsmq",
     poster: poster("rainy_vxfsmq", 2),
     link: "https://res.cloudinary.com/dkwgl0ek8/video/upload/v1756299106/rainy_vxfsmq.mp4",

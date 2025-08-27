@@ -22,15 +22,18 @@ function renderMarkdownLinks(text, role) {
       const linkUrl = parts[i + 1];
 
       if (linkText && linkUrl) {
+        // Detect links to blog posts to style them blue + underlined
+        const isBlogPostLink = /(^\/posts\\/)|(^https?:\/\/[^\s)]+\/posts\\/)/.test(linkUrl);
+        const baseLinkClass = isBlogPostLink
+          ? 'text-blue-600 underline hover:text-blue-700'
+          : role === 'user'
+            ? 'text-[var(--bg)] underline'
+            : 'text-[var(--fg)]/90 underline';
         result.push(
           <a
             key={`link-${i}`}
             href={linkUrl}
-            className={`${
-              role === 'user'
-                ? 'text-[var(--bg)] underline'
-                : 'text-[var(--fg)]/90 underline'
-            } pointer-events-auto`}
+            className={`${baseLinkClass} pointer-events-auto`}
             target="_blank"
             rel="noopener noreferrer"
           >
