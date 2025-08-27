@@ -23,7 +23,8 @@ function renderMarkdownLinks(text, role) {
 
       if (linkText && linkUrl) {
         // Detect links to blog posts to style them blue + underlined
-        const isBlogPostLink = /(^\/posts\\/)|(^https?:\/\/[^\s)]+\/posts\\/)/.test(linkUrl);
+        // Matches either "/posts/..." at start or absolute URLs like "https://.../posts/..."
+        const isBlogPostLink = /^(\/posts\/|https?:\/\/[^\s)]+\/posts\/)/.test(linkUrl);
         const baseLinkClass = isBlogPostLink
           ? 'text-blue-600 underline hover:text-blue-700'
           : role === 'user'

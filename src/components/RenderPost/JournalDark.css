@@ -541,6 +541,26 @@
   border: none;
 }
 
+/* Decorative underline for links inside post content using public/underline.svg */
+.journal-light .journal-content a,
+.journal-dark .journal-content a {
+  text-decoration: none;
+  position: relative;
+  background-image: url('/underline.svg');
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 100% 6px; /* underline height */
+  padding-bottom: 2px; /* make room for the underline */
+}
+
+/* Optional hover emphasis */
+@media (hover: hover) {
+  .journal-light .journal-content a:hover,
+  .journal-dark .journal-content a:hover {
+    background-size: 100% 8px;
+  }
+}
+
 /* Shared Styles for Both Themes */
 .page-header {
   text-align: center;
