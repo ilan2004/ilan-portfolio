@@ -124,7 +124,7 @@
 
 .menu-link-item {
   position: relative;
-  padding: 1em 0 0.125em 0;
+  padding: 1.15em 0 0.5em 0;
   clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
   text-align: center;
   pointer-events: all;
@@ -139,15 +139,23 @@
   position: relative;
   color: var(--bg);
   font-family: "Rader";
-  font-size: 7vw;
+  font-size: 6.2vw;
   text-transform: uppercase;
   letter-spacing: -0.01em;
-  line-height: 80%;
+  line-height: 90%;
   transition: color 0.3s;
 }
 
 .menu-link-item .menu-link-item-holder:hover a {
   color: rgba(255, 255, 255, 1);
+}
+
+.menu-links {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.25em 0.75em;
+  align-items: start;
+  width: 100%;
 }
 
 @media (max-width: 1000px) {
@@ -172,6 +180,9 @@
   }
 
   .menu-link-item .menu-link-item-holder a {
-    font-size: 16vw;
+    font-size: 15vw;
+    line-height: 90%;
   }
+
+  .menu-links { grid-template-columns: 1fr; gap: 0.35em; }
 }

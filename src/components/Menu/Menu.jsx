@@ -8,6 +8,7 @@ const Menu = () => {
   const menuLinks = [
     { path: "/", label: "Home" },
     { path: "/work", label: "Work" },
+    { path: "/videos", label: "Videos" },
     { path: "/posts", label: "Blogs" },
     { path: "/about", label: "About" },
     { path: "/contact", label: "Contact" },

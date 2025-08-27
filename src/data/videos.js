@@ -78,7 +78,7 @@ const videos = [
     publicId: "thing_of_beauty_vrwufm",
     poster: poster("thing_of_beauty_vrwufm", 2),
     link: "https://res.cloudinary.com/dkwgl0ek8/video/upload/v1756291734/thing_of_beauty_vrwufm.mp4",
-    tags: ["film"],
+    tags: ["film","nature"],
   },
   {
     id: "vid-fasting",
@@ -86,7 +86,15 @@ const videos = [
     publicId: "fasting_uyqysc",
     poster: poster("fasting_uyqysc", 2),
     link: "https://res.cloudinary.com/dkwgl0ek8/video/upload/v1756291818/fasting_uyqysc.mp4",
-    tags: ["short"],
+    tags: ["family","peace"],
+  },
+  {
+    id: "vid-rainy",
+    title: "Rainy",
+    publicId: "rainy_vxfsmq",
+    poster: poster("rainy_vxfsmq", 2),
+    link: "https://res.cloudinary.com/dkwgl0ek8/video/upload/v1756299106/rainy_vxfsmq.mp4",
+    tags: ["rain", "nature"],
   },
 ];
 

@@ -28,12 +28,12 @@ const Home = () => {
   const homeWorkRef = useRef(null);
 
   // Chat background rotation (images from public/home/*)
-  const [backgroundImage, setBackgroundImage] = useState("/home/lap.png");
+  const [backgroundImage, setBackgroundImage] = useState("/home/academ.jpeg");
   const imageList = [
     "/home/mountain.png",
     "/home/group.png",
     "/home/amazon.png",
-    "/home/lap.png",
+    "/home/academ.jpeg",
   ];
 
   const changeBackground = useCallback(() => {

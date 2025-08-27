@@ -33,6 +33,15 @@
 }
 .videos-header h1 { font-size: 6vw; font-weight: 800; }
 
+.filters-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.6rem;
+  align-items: center;
+  padding: 0.5rem 0.25rem 1rem;
+  margin-bottom: 0.5rem;
+}
+
 .videos-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -70,6 +79,7 @@
   aspect-ratio: 16/9;
   width: 100%;
   overflow: hidden;
+  position: relative;
 }
 
 .video-poster img {
@@ -77,6 +87,56 @@
   height: 100%;
   object-fit: cover;
   display: block;
+}
+
+/* Play overlay badge */
+.play-badge {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+.play-badge::before {
+  /* Glassy backdrop with subtle ring */
+  content: "";
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.02));
+  border: 1.5px solid rgba(255, 255, 255, 0.65);
+  box-shadow: 0 6px 24px rgba(0,0,0,0.35), inset 0 0 0 1px rgba(255,255,255,0.2);
+  backdrop-filter: saturate(1.2) blur(6px);
+  -webkit-backdrop-filter: saturate(1.2) blur(6px);
+  display: inline-block;
+  transition: transform 220ms ease, opacity 220ms ease;
+  position: relative;
+}
+.play-badge::after {
+  /* White play triangle */
+  content: "";
+  position: absolute;
+  width: 56px;
+  height: 56px;
+  background: #fff;
+  mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="white" d="M8 5v14l11-7z"/></svg>') center/42% no-repeat;
+  -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="white" d="M8 5v14l11-7z"/></svg>') center/42% no-repeat;
+}
+.video-card:hover .play-badge,
+.video-card:focus-visible .play-badge { opacity: 1; }
+.video-card:hover .play-badge::before { transform: scale(1.06); opacity: 1; }
+.video-card:active .play-badge::before { transform: scale(0.98); }
+
+@media (max-width: 600px) {
+  .play-badge::before,
+  .play-badge::after { width: 48px; height: 48px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .play-badge,
+  .play-badge::before { transition: none; }
 }
 
 .video-meta {
@@ -104,6 +164,12 @@
   transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease;
   font-size: 0.8rem;
 }
+.tag-chip.is-active {
+  background: var(--fg);
+  color: var(--bg);
+  border-color: var(--bg);
+}
+.filters-bar .all-chip { font-weight: 600; }
 .tag-chip .tag-count { font-size: 0.85em; opacity: 0.75; }
 .tag-chip:hover { background: var(--fg); color: var(--bg); border-color: var(--bg); }
 
