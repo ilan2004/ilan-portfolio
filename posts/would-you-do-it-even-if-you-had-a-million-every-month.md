@@ -9,7 +9,7 @@ Last week, some of us friends were just hanging out and talking. That’s when t
 It’s a famous, almost cliché question. But the reason it sticks around is because it’s an important one.
 
 
-I’ve seen many YouTube videos on this theme. One that often shows up in my feed is Robert Waldinger talking about the famous Harvard study — one of the longest-running studies on happiness. They followed people for decades, from Harvard students to middle-class families, to understand what really makes a good life. The answer wasn’t money or status, but something deeper.
+I’ve seen many YouTube videos on this theme. One that often shows up in my feed is Robert Waldinger’s [TED Talk on the Harvard Study of Adult Development](https://www.youtube.com/watch?v=8KkKuTCFvzI) — one of the longest-running studies on happiness. They followed people for decades, from Harvard students to middle-class families, to understand what really makes a good life. The answer wasn’t money or status, but something deeper.
 
 
 That got me thinking about engineering.
