@@ -18,6 +18,7 @@ import RandomPage from "./pages/random/page.tsx";
 import SearchPage from "./pages/search/page.tsx";
 import TagsPage from "./pages/tags/page.tsx";
 import TagDetailPage from "./pages/tags/[slug]/page.tsx";
+import Videos from "./pages/Videos/Videos";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -52,6 +53,7 @@ function App() {
           <Route path="/search" element={<SearchPage />} />
           <Route path="/tags" element={<TagsPage />} />
           <Route path="/tags/:slug" element={<TagDetailPage />} />
+          <Route path="/videos" element={<Videos />} />
         </Routes>
       </AnimatePresence>
     </>

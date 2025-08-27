@@ -309,6 +309,33 @@
   border-radius: 1em;
 }
 
+.hobby-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  text-decoration: none;
+  color: inherit;
+  background: var(--fg);
+  color: var(--bg);
+  border: 1px dashed var(--bg);
+  transition: transform 220ms ease, box-shadow 220ms ease, background 200ms ease;
+}
+
+.hobby-link:hover,
+.hobby-link:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+  background: linear-gradient(135deg, var(--fg) 0%, #2d2d2d 100%);
+}
+
+.hobby-link:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+}
+
 /* Final overrides to ensure mobile hero styles are not overwritten by earlier duplicate blocks */
 @media (max-width: 768px) {
   .hero .hero-header h1 {
