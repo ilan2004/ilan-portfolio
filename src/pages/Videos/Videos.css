@@ -86,6 +86,27 @@
   gap: 0.35rem;
 }
 
+/* Tag chips inside video cards */
+.tags-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.5rem;
+}
+.tag-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.22rem 0.5rem;
+  border: 1px dashed var(--fg);
+  border-radius: 999px;
+  color: var(--fg);
+  background: var(--bg);
+  transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease;
+  font-size: 0.8rem;
+}
+.tag-chip .tag-count { font-size: 0.85em; opacity: 0.75; }
+.tag-chip:hover { background: var(--fg); color: var(--bg); border-color: var(--bg); }
+
 /* Responsive */
 @media (max-width: 1000px) {
   .page.videos { padding: 1.25em; }

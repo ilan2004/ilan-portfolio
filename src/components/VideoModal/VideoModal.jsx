@@ -35,6 +35,13 @@ const VideoModal = ({
       // If Safari/iOS support HLS natively
       if (video.canPlayType("application/vnd.apple.mpegurl")) {
         video.src = hlsManifest;
+        // If native HLS fails to load, fall back to MP4
+        const onError = () => {
+          video.removeEventListener("error", onError);
+          video.src = buildMp4Url(cloudName, publicId);
+          if (autoPlay) video.play().catch(() => {});
+        };
+        video.addEventListener("error", onError, { once: true });
         if (autoPlay) video.play().catch(() => {});
         return;
       }
@@ -58,6 +65,15 @@ const VideoModal = ({
           hls.attachMedia(video);
           hls.on(Hls.Events.MANIFEST_PARSED, () => {
             if (autoPlay) video.play().catch(() => {});
+          });
+          hls.on(Hls.Events.ERROR, (event, data) => {
+            if (data?.fatal) {
+              try { hls.destroy(); } catch (_) {}
+              hlsRef.current = null;
+              // Fallback to MP4 on fatal HLS errors (e.g., manifest/frag not found)
+              video.src = buildMp4Url(cloudName, publicId);
+              if (autoPlay) video.play().catch(() => {});
+            }
           });
         } else {
           // Fallback to MP4

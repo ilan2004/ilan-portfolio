@@ -43,7 +43,11 @@ const Videos = () => {
                 <div className="video-meta">
                   <h4>{v.title}</h4>
                   {v.tags?.length ? (
-                    <p className="secondary xs">{v.tags.join(" • ")}</p>
+                    <div className="tags-grid">
+                      {v.tags.map((t) => (
+                        <span className="tag-chip" key={t}>{t}</span>
+                      ))}
+                    </div>
                   ) : null}
                 </div>
               </button>
