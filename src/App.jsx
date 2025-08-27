@@ -1,6 +1,7 @@
 import "./App.css";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import { trackPageview } from "./utils/analytics";
 
 import Menu from "./components/Menu/Menu";
 
@@ -34,6 +35,10 @@ function ScrollToTop() {
 
 function App() {
   const location = useLocation();
+
+  useEffect(() => {
+    trackPageview(location.pathname, document.title);
+  }, [location.pathname]);
 
   return (
     <>

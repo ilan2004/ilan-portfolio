@@ -4,6 +4,7 @@ import "./Videos.css";
 import Transition from "../../components/Transition/Transition";
 import videos, { CLOUD_NAME } from "../../data/videos";
 import VideoModal from "../../components/VideoModal/VideoModal";
+import { trackEvent } from "../../utils/analytics";
 
 const Videos = () => {
   const [open, setOpen] = useState(false);
@@ -28,13 +29,27 @@ const Videos = () => {
     const next = new Set(selected);
     if (next.has(tag)) next.delete(tag); else next.add(tag);
     setSelected(next);
+    trackEvent("filter_toggle", {
+      tag,
+      selected: next.has(tag),
+      total_selected: next.size,
+      source: "videos_page",
+    });
   };
 
-  const clearTags = () => setSelected(new Set());
+  const clearTags = () => {
+    setSelected(new Set());
+    trackEvent("filter_clear", { source: "videos_page" });
+  };
 
   const openVideo = (v) => {
     setActive({ publicId: v.publicId, title: v.title, poster: v.poster });
     setOpen(true);
+    trackEvent("video_open", {
+      public_id: v.publicId,
+      title: v.title,
+      source: "videos_page",
+    });
   };
 
   const closeVideo = () => {
