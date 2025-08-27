@@ -32,6 +32,9 @@ const VideoModal = ({
     const hlsManifest = buildHlsUrl(cloudName, publicId, streamingProfile);
 
     const setup = async () => {
+      // Enable audio when modal opens (user gesture context)
+      try { video.muted = false; } catch (_) {}
+      try { video.volume = 1.0; } catch (_) {}
       // If Safari/iOS support HLS natively
       if (video.canPlayType("application/vnd.apple.mpegurl")) {
         video.src = hlsManifest;
@@ -39,10 +42,10 @@ const VideoModal = ({
         const onError = () => {
           video.removeEventListener("error", onError);
           video.src = buildMp4Url(cloudName, publicId);
-          if (autoPlay) video.play().catch(() => {});
+          if (autoPlay) setTimeout(() => video.play().catch(() => {}), 0);
         };
         video.addEventListener("error", onError, { once: true });
-        if (autoPlay) video.play().catch(() => {});
+        if (autoPlay) setTimeout(() => video.play().catch(() => {}), 0);
         return;
       }
 
@@ -64,7 +67,7 @@ const VideoModal = ({
           hls.loadSource(hlsManifest);
           hls.attachMedia(video);
           hls.on(Hls.Events.MANIFEST_PARSED, () => {
-            if (autoPlay) video.play().catch(() => {});
+            if (autoPlay) setTimeout(() => video.play().catch(() => {}), 0);
           });
           hls.on(Hls.Events.ERROR, (event, data) => {
             if (data?.fatal) {
@@ -72,18 +75,18 @@ const VideoModal = ({
               hlsRef.current = null;
               // Fallback to MP4 on fatal HLS errors (e.g., manifest/frag not found)
               video.src = buildMp4Url(cloudName, publicId);
-              if (autoPlay) video.play().catch(() => {});
+              if (autoPlay) setTimeout(() => video.play().catch(() => {}), 0);
             }
           });
         } else {
           // Fallback to MP4
           video.src = buildMp4Url(cloudName, publicId);
-          if (autoPlay) video.play().catch(() => {});
+          if (autoPlay) setTimeout(() => video.play().catch(() => {}), 0);
         }
       } catch (e) {
         // As a last resort, try MP4 fallback
         video.src = buildMp4Url(cloudName, publicId);
-        if (autoPlay) video.play().catch(() => {});
+        if (autoPlay) setTimeout(() => video.play().catch(() => {}), 0);
       }
     };
 
@@ -120,7 +123,6 @@ const VideoModal = ({
             poster={posterUrl}
             controls
             playsInline
-            muted
             preload="none"
           />
         </div>

@@ -9,6 +9,7 @@
   /* Match /posts: no inner max-width, use outer card margins */
   max-width: 100%;
   margin: 0;
+  align-items: center;
 }
 
 .videos-wrap {
@@ -19,6 +20,8 @@
   border-radius: 1em;
   /* Add inner top padding so header clears navbar height, like /posts */
   padding: 7em 1.5em 1.5em;
+  /* Make container feel full-height */
+  min-height: calc(100svh - 4em);
 }
 .videos-wrap h1,
 .videos-wrap h3,
@@ -31,7 +34,7 @@
   margin-bottom: 1.5rem;
   text-align: center;
 }
-.videos-header h1 { font-size: 6vw; font-weight: 800; }
+.videos-header h1 { font-size: clamp(28px, 8vw, 56px); font-weight: 800; }
 
 .filters-bar {
   display: flex;
@@ -188,4 +191,11 @@
 
 @media (max-width: 520px) {
   .videos-grid { grid-template-columns: 1fr; }
+  .page.videos { padding: 0.75em; }
+}
+@media (max-width: 600px) {
+  .videos-wrap {
+    margin: 0.8em;        /* close to /posts */
+    padding: 7em 2em 2em;  /* close to /posts */
+  }
 }
