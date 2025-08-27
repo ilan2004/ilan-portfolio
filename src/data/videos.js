@@ -72,6 +72,22 @@ const videos = [
     link: "https://res.cloudinary.com/dkwgl0ek8/video/upload/v1756291100/let_the_kid_live_pje8xa.mp4",
     tags: ["fun","friends"],
   },
+  {
+    id: "vid-thing-of-beauty",
+    title: "Thing of Beauty",
+    publicId: "thing_of_beauty_vrwufm",
+    poster: poster("thing_of_beauty_vrwufm", 2),
+    link: "https://res.cloudinary.com/dkwgl0ek8/video/upload/v1756291734/thing_of_beauty_vrwufm.mp4",
+    tags: ["film"],
+  },
+  {
+    id: "vid-fasting",
+    title: "Fasting",
+    publicId: "fasting_uyqysc",
+    poster: poster("fasting_uyqysc", 2),
+    link: "https://res.cloudinary.com/dkwgl0ek8/video/upload/v1756291818/fasting_uyqysc.mp4",
+    tags: ["short"],
+  },
 ];
 
 export default videos;
