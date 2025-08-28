@@ -1,6 +1,6 @@
 ---
 title: 'Weight of existing '
-tags: 'Journal, Social dynamics, Daily life'
+tags: 'Journal, Social dynamics, Daily life, Psychology, Philosophy'
 date: '2025-08-28'
 --------------------
 No matter how careful we are, just by living in society we inevitably affect others, sometimes negatively. That’s the raw truth. People like to pretend they can be “neutral,” but in reality, being alive already consumes space, attention, and resources.
