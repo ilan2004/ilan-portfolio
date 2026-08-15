@@ -15,6 +15,7 @@
 }
 
 body {
+  margin: 0;
   font-family: "Messina Sans";
   background-color: var(--bg);
   color: var(--fg);
@@ -122,6 +123,26 @@ a {
 button {
   outline: none;
   border: none;
+}
+
+.theme-switch {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 4rem;
+  height: 4rem;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.theme-switch__icon {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 input,

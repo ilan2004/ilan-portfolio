@@ -1,4 +1,13 @@
 @font-face {
+  font-family: "VCR OSD Mono";
+  src: url("/fonts/vcr-osd-mono/VCR_OSD_MONO.woff") format("woff"),
+    url("/fonts/vcr-osd-mono/VCR_OSD_MONO.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
   font-family: "Rader";
   src: url("/fonts/rader/PPRader-Bold.ttf") format("truetype");
   font-weight: bold;

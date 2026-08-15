@@ -1,10 +1,9 @@
 import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import getPostMetadata from '../../utils/getPostMetadata';
+import ThemeSwitch from '../../components/ThemeSwitch/ThemeSwitch';
 import './PostsArchive.css';
 
-// Posts archive page (Vite + React Router version)
-// Uses site CSS variables: var(--fg), var(--bg), var(--bg200)
 export default function PostsArchivePage() {
   const postMetadata = useMemo(() => getPostMetadata(), []);
 
@@ -15,62 +14,40 @@ export default function PostsArchivePage() {
   }, [postMetadata]);
 
   return (
-    <div className="posts-archive">
-      {/* Centered hero heading + description */}
-      <div className="posts-archive-hero">
-        <h1>Browse the Blog</h1>
-        <p>Dive into articles, notes, and experiments.</p>
-      </div>
+    <main className="posts-archive">
+      <ThemeSwitch className="posts-archive__theme" />
 
-      {/* Main content row */}
-      <div className="posts-archive-row main">
-        {/* Left column: headline + info + actions */}
-        <div className="posts-archive-col left">
-          {/* Description above totals and actions */}
-          <p className="avoid-widows">Filter by tags, pick at random, or search&nbsp;deeply.</p>
+      <header className="posts-archive__header">
+        <Link to="/" className="posts-archive__brand">ILAN</Link>
+        <p>TAPE 01 / ARCHIVE</p>
+      </header>
 
-          <div className="posts-archive-info">
-            <p className="primary sm">
-              Total: {totalBlogs} ({new Intl.NumberFormat().format(totalWords)} words)
-            </p>
-            <div className="posts-archive-actions">
-              <Link to="/tags">tags</Link>
-              <span> · </span>
-              <Link to="/random">random</Link>
-              <span> · </span>
-              <Link to="/search">search</Link>
-            </div>
-          </div>
-        </div>
+      <nav className="posts-archive__nav" aria-label="Archive tools">
+        <Link to="/start">start</Link>
+        <Link to="/tags">tags</Link>
+        <Link to="/random">random</Link>
+        <Link to="/search">search</Link>
+      </nav>
 
-        {/* Right column: list */}
-        <div className="posts-archive-col right">
-          <div className="posts-list">
-            <div className="posts-list-header">
-              <p className="posts-list-header-title">Title</p>
-              <p className="posts-list-header-date">Date</p>
-            </div>
-            {postMetadata.map((post, idx) => {
-              const isStarred = (post.tags || []).includes('✰');
-              return (
-                <Link key={post.slug} to={`/posts/${post.slug}`} className="block">
-                  <div className="posts-item">
-                    <div className="flex items-center gap-2 min-w-0">
-                      {isStarred && (
-                        <span aria-label="starred">✰</span>
-                      )}
-                      <p className={`posts-item-title truncate ${isStarred ? 'font-semibold' : ''}`}>
-                        {post.title}
-                      </p>
-                    </div>
-                    <p className="posts-item-date ml-4 shrink-0">{post.date}</p>
-                  </div>
-                </Link>
-              );
-            })}
-          </div>
-        </div>
-      </div>
-    </div>
+      <section className="posts-archive__meta" aria-label="Archive totals">
+        <p>{totalBlogs} posts · {new Intl.NumberFormat().format(totalWords)} words</p>
+      </section>
+
+      <section className="posts-list" aria-label="Posts">
+        <p className="posts-list__eyebrow">all tapes</p>
+        {postMetadata.map((post) => {
+          const isStarred = String(post.tags || '').includes('✰');
+          return (
+            <Link key={post.slug} to={`/posts/${post.slug}`} className="posts-item">
+              <span className="posts-item__title">
+                {isStarred && <span className="posts-item__star" aria-label="starred">✰</span>}
+                {post.title}
+              </span>
+              <time className="posts-item__date">{post.date || 'undated'}</time>
+            </Link>
+          );
+        })}
+      </section>
+    </main>
   );
 }

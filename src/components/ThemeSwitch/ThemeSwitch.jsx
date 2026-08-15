@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-export default function ThemeSwitch() {
+export default function ThemeSwitch({ className = "" }) {
   const [mounted, setMounted] = useState(false);
   const [isDark, setIsDark] = useState(false);
 
@@ -22,9 +22,21 @@ export default function ThemeSwitch() {
     localStorage.setItem('theme', next ? 'dark' : 'light');
   };
 
+  const nextTheme = isDark ? 'light' : 'dark';
+  const iconSrc =
+    nextTheme === 'dark'
+      ? '/icons/horizon%20moon.png'
+      : '/icons/sun%20horizon.png';
+
   return (
-    <button onClick={toggle} className="w-fit h-fit p-0 m-0 bg-transparent border-none cursor-pointer">
-      {isDark ? '☀️' : '🌑'}
+    <button
+      type="button"
+      onClick={toggle}
+      className={`theme-switch ${className}`.trim()}
+      aria-label={`Switch to ${nextTheme} theme`}
+      title={`Switch to ${nextTheme} theme`}
+    >
+      <img src={iconSrc} alt="" aria-hidden="true" className="theme-switch__icon" />
     </button>
   );
 }

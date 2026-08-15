@@ -6,9 +6,9 @@ import { trackPageview } from "./utils/analytics";
 import Menu from "./components/Menu/Menu";
 
 import Home from "./pages/Home/Home";
+import Start from "./pages/Start/Start";
 import Work from "./pages/Work/Work";
 import Project from "./pages/Project/Project";
-import About from "./pages/About/About";
 import FAQ from "./pages/FAQ/FAQ";
 import Contact from "./pages/Contact/Contact";
 
@@ -35,6 +35,8 @@ function ScrollToTop() {
 
 function App() {
   const location = useLocation();
+  const hideMenuRoutes = ["/", "/start", "/posts"];
+  const shouldHideMenu = hideMenuRoutes.includes(location.pathname) || location.pathname.startsWith("/posts/");
 
   useEffect(() => {
     trackPageview(location.pathname, document.title);
@@ -43,11 +45,11 @@ function App() {
   return (
     <>
       <ScrollToTop />
-      <Menu />
+      {!shouldHideMenu && <Menu />}
       <AnimatePresence mode="wait" initial={false}>
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
+          <Route path="/start" element={<Start />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/faq" element={<FAQ />} />
           <Route path="/work" element={<Work />} />
